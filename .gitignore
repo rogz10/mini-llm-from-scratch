@@ -1,0 +1,4 @@
+# ignorer le fichier ruff.toml
+ruff.toml
+#ignorer le fichier train.txt dans le dossier data
+data/train.txt
