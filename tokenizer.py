@@ -50,6 +50,7 @@ for nbre in liste_depart:
 batch_x=torch.tensor(batch_x,dtype=torch.int64)
 batch_y=torch.tensor(batch_y,dtype=torch.int64)
 print(batch_x.shape)
+print(batch_x)
 print(batch_y.shape)
 print(f"batch x :{batch_x}")
 print(f"taille du batch:{len(batch_x)}")
