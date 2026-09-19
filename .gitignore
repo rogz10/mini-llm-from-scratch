@@ -1,4 +1,8 @@
-# ignorer le fichier ruff.toml
+# le fichier de config ruff
 ruff.toml
-#ignorer le fichier train.txt dans le dossier data
+
+# le corpus d'entraînement (trop lourd pour git)
 data/train.txt
+
+# le bytecode compilé par Python
+__pycache__/
