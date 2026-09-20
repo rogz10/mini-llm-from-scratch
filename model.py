@@ -1,33 +1,34 @@
 import torch
+import torch.nn.functional as F
 from torch import nn
 
-from tokenizer import batch_x
-from visualisation import afficher_embedding, projeter_embedding
 
-torch.manual_seed(42)
-#table=nn.Embedding(num_embeddings=120, embedding_dim=128)
-print(f"taille du batch x:{len(batch_x)}")
 
-table=nn.Embedding(num_embeddings=120, embedding_dim=128)
-points=projeter_embedding(table.weight)
-#afficher_embedding(points)
-#print(points.shape)
-print(table.weight.shape)
-print(batch_x.shape)
-vecteur=table(batch_x)
-print(vecteur.shape)
-#print(table.shape)
+class Bigramme(nn.Module):
+    def __init__(self,taille_vocabulaire):
+        super().__init__()
+        self.table=nn.Embedding(num_embeddings=120,embedding_dim=120)
+    def forward(self,idx,cible=None):
+        logits=self.table(idx)
+        print(logits.shape)
+        b,t,v=logits.shape
+        print(b)
+        print(t)
+        print(v)
+        return logits
 
-#identifiant=torch.tensor([55,68,55],dtype=torch.int64)
-#identifiant = torch.tensor( [[55, 68, 55], [68, 55, 68]],dtype=torch.int64)
-"""
-print(identifiant.shape)
-print(identifiant)
-vecteur=table(identifiant)
-print(vecteur)
-print(vecteur.shape)
-#print(vecteur[:,:4])
-ex_1=vecteur[:,:,:4]
-print(ex_1.shape)
-print(ex_1[:4])
-"""
+
+
+
+
+if __name__=="__main__":
+    modele=Bigramme(120)
+    print(modele)
+
+    idx=torch.randint(0,120,(3,8))
+    logits=modele(idx)
+    print(logits.shape)
+
+
+
+

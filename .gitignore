@@ -1,4 +1,8 @@
-# ignorer le fichier ruff.toml
+#fichier de config ruff
 ruff.toml
-#ignorer le fichier train.txt dans le dossier data
+
+# corpus d'entraînement
 data/train.txt
+
+# bytecode
+__pycache__/
