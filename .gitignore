@@ -6,3 +6,5 @@ data/train.txt
 
 # bytecode
 __pycache__/
+
+test.py
