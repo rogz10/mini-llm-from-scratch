@@ -1,13 +1,15 @@
 from pathlib import Path
+
 import torch
-from tokenizer import charger_texte, construire_vocabulaire,encode
+
+from tokenizer import charger_texte, construire_vocabulaire, encode
 
 chemin=Path(__file__).parent/"data"/"train.txt"
 texte=charger_texte(chemin)
 print(texte[:100])
 char_to_id,id_to_char,caractere=construire_vocabulaire(texte)
 token_id=torch.tensor(encode(texte,char_to_id))
-n=int(0.9 * 417738)
+n=int(0.9 * len(token_id))
 print(n)
 donnees_train=token_id[:n]
 donnees_val=token_id[n:]
