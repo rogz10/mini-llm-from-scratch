@@ -17,6 +17,7 @@ intervalle_eval=500
 nb_batchs_eval=200
 #chemin du fichier texte
 chemin=Path(__file__).parent/"data"/"train.txt"
+chemin_modele=Path(__file__).parent/"model"/"bigramme.pt"
 texte=charger_texte(chemin)
 # construction du vocabulaire
 char_to_id,id_to_char,caractere=construire_vocabulaire(texte)
@@ -62,6 +63,8 @@ for pas in range(nb_pas+1):
         perte_val=estimer_perte(modele, donnees_val, nb_batchs_eval)
 
         print(f"pas:{pas:4d} | loss train :{perte_train:.3f}| loss val: {perte_val:.3f} ")
+
+torch.save(modele.state_dict(),chemin_modele)
 
 
 
