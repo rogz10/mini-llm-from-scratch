@@ -7,6 +7,7 @@ from torch import nn
 b=batch
 t= taille de caractère pat batch
 v= nombre de score par caractère
+logit = score pour chaque cactere
 """
 
 class Bigramme(nn.Module):

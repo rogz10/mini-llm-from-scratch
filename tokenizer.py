@@ -54,7 +54,6 @@ if __name__ == "__main__":
 
     token_ids=encode(texte,char_to_id)
     ids_tokens=decode(token_ids, id_to_char)
-
     debut = 10
     longueur=8
     liste_depart=[0,10,20]
