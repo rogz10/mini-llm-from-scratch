@@ -8,3 +8,6 @@ data/train.txt
 __pycache__/
 
 test.py
+
+model/
+.ruff_cache/
