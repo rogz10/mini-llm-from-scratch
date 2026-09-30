@@ -11,3 +11,5 @@ test.py
 
 model/
 .ruff_cache/
+
+test_attention.py
