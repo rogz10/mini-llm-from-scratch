@@ -39,8 +39,9 @@ class Tete(nn.Module):
         taille_tete:le nombre de nombres de chaque requête, clé et valeur (16 ou 32)
 
         Q = requête : ce que la lettre cherche dans son passé ( ce que je cherche)
-        K = clé     : ce que la lettre est, pour être trouvée (qui je suis )
-        V = valeur  : ce que la lettre transmet à ceux qui la regardent (ce que je donne quand on me regarde)
+        K = clé: ce que la lettre est, pour être trouvée (qui je suis )
+        V = valeur : ce que la lettre transmet à ceux qui la regardent (ce que je donne quand on me regarde)
+
     formes:
         entrée x: (b, t, n_embd),b = extraits du batch, t = lettres par extrait
         scores, poids: (b, t, t)ligne i = combien la lettre i regarde chaque lettre
@@ -69,7 +70,7 @@ class Tete(nn.Module):
 
         # nombre de lettres de l'extrait
         _,t,_=x.shape
-        # triangle (t, t) : 1 = lettre autorisée (passé et soi-même), 0 = lettre d'après
+        # triangle : 1 = lettre autorisée (passé et soi-même), 0 = lettre d'après
         triangle_matrice=torch.tril(torch.ones(t,t))
 
         # masque, -inf lettres d'après pour que softmax leur donne 0 %
@@ -81,6 +82,31 @@ class Tete(nn.Module):
         sortie= poids @ V
         return sortie
 
+"""
+MiniGPT sans tête
+"""
+class MiniGPT(nn.Module):
+    def __init__(self, taille_vocabulaire,n_embd):
+        super().__init__()
+        self.embedding=nn.Embedding(taille_vocabulaire,n_embd)
+        self.sortie=nn.Linear(n_embd,taille_vocabulaire)
+        self.tete=Tete(n_embd,n_embd)
+
+    def forward(self,idx,cible=None):
+        logits=self.embedding(idx)
+        logits=self.tete(logits)
+        sortie=self.sortie(logits)
+        if cible is None:
+            return sortie, None
+
+        _,_,v=sortie.shape
+        sortie_plat=sortie.reshape(-1,v)
+        cible_plat=cible.reshape(-1)
+
+        perte_minigpt=F.cross_entropy(sortie_plat,cible_plat)
+
+        return sortie,perte_minigpt
+
 if __name__=="__main__":
     modele=Bigramme(120)
     print(modele)
@@ -89,6 +115,7 @@ if __name__=="__main__":
     cible=torch.randint(0,120,(3,8))
     logits,perte=modele(idx,cible)
     print(perte.item())
+
     #print(logits.shape)
     #print(logits[0])
 

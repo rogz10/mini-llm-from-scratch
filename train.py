@@ -3,7 +3,7 @@ from pathlib import Path
 import torch
 
 from dataset import creer_batch
-from model import Bigramme
+from model import MiniGPT
 from tokenizer import charger_texte, construire_vocabulaire, encode
 
 # fixer la graine aléatoire pour reproductibilité
@@ -17,7 +17,8 @@ intervalle_eval=500
 nb_batchs_eval=200
 #chemin du fichier texte
 chemin=Path(__file__).parent/"data"/"train.txt"
-chemin_modele=Path(__file__).parent/"model"/"bigramme.pt"
+chemin_modele=Path(__file__).parent/"model"/"Minigpt_avec_tete.pt"
+#chemin_modele=Path(__file__).parent/"model"/"Bigramme.pt"
 texte=charger_texte(chemin)
 # construction du vocabulaire
 char_to_id,id_to_char,caractere=construire_vocabulaire(texte)
@@ -28,7 +29,8 @@ donnees_train=token_id[:n]
 donnees_val=token_id[n:]
 
 #model
-modele=Bigramme(len(caractere))
+#modele=Bigramme(len(caractere))
+modele= MiniGPT(len(caractere), 32)
 # decorateur pour éviter de suivre le gradient
 @torch.no_grad()
 # fonction pour estimer la perte sur un certain nombre de batchs
