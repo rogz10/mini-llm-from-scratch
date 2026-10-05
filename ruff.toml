@@ -1,0 +1,3 @@
+# Autoriser repr(...) dans les f-strings.
+[lint]
+extend-ignore = ["RUF010"]
