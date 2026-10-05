@@ -85,32 +85,55 @@ class Tete(nn.Module):
 
 class MiniGPT(nn.Module):
     """
-MiniGPT , modèle entier
+Modèle de langage caractère : prédit le caractère suivant à chaque position
+
+    paramètres:
+        taille_vocabulaire: nombre de caractères différents (120)
+        embd_dim: nombres qui décrivent chaque caractère (32)
+        nb_tetes: têtes d'attention dans chaque bloc (4)
+        nb_blocs: blocs Transformer empilés (3)
+
+    chemin des données:
+        idx (b, t) -> embedding (b, t, embd_dim) -> nb_blocs blocs (b, t, embd_dim)
+        ->LayerNorm finale -> sortie (b, t, taille_vocabulaire)
+
+    renvoie:
+        logits: 120 scores par caractère, un par caractère candidat
+        perte: entropie croisée si cible est donnée, sinon None
 
 """
-    def __init__(self, taille_vocabulaire,embd_dim,nb_tetes):
+    def __init__(self, taille_vocabulaire,embd_dim,nb_tetes,nb_blocs):
         super().__init__()
         self.embedding=nn.Embedding(taille_vocabulaire,embd_dim)
+         # embd_dim dimension embedding(nombre de nombre par lettres), 4 têtes et embd_dim//4(taille de chaque têtes=8)
+        #self.tete=MultiTetes(embd_dim,nb_tetes,embd_dim//nb_tetes)
+        # feed
+        #self.fw=FeedForward(embd_dim)
+        #(bloc=attention + feed forward)
+        # [Bloc(embd_dim,nb_tetes)= creer un bloc, for _ in range(nb_blocs)=crrer autant de bloc de nb_bloc, 3-> [bloc0,... bloc2] , * deballer->(nn.Sequential(bloc0,...bloc2))
+        self.blocs=nn.Sequential(*[Bloc(embd_dim,nb_tetes) for _ in range(nb_blocs)])
+        self.ln_finale=nn.LayerNorm(embd_dim)
         self.sortie=nn.Linear(embd_dim,taille_vocabulaire)
-        # embd_dim dimension embedding(nombre de nombre par lettres), 4 têtes et embd_dim//4(taille de chaque têtes=8)
-
-        self.tete=MultiTetes(embd_dim,nb_tetes,embd_dim//nb_tetes)
         #self.muti_tetes=MultiTetes(embd_dim,4,embd_dim//4)
 
     def forward(self,idx,cible=None):
-        logits=self.embedding(idx)
-        logits=self.tete(logits)
-        sortie=self.sortie(logits)
-        if cible is None:
-            return sortie, None
+        x=self.embedding(idx)
+        #x=self.tete(x)
+        #x=self.fw(x)
+        x=self.blocs(x)
+        x=self.ln_finale(x)
+        logits=self.sortie(x)
 
-        _,_,v=sortie.shape
-        sortie_plat=sortie.reshape(-1,v)
+        if cible is None:
+            return logits, None
+
+        _,_,v=logits.shape
+        logits_plat=logits.reshape(-1,v)
         cible_plat=cible.reshape(-1)
 
-        perte_minigpt=F.cross_entropy(sortie_plat,cible_plat)
+        perte_minigpt=F.cross_entropy(logits_plat,cible_plat)
 
-        return sortie,perte_minigpt
+        return logits,perte_minigpt
 
 class MultiTetes(nn.Module):
     """
@@ -127,7 +150,6 @@ formes :
 
 MultiTetes(32, 4, 8) - 4 têtes de 8 - 32 nombres par lettre
 
-
 """
     def __init__(self,embd_dim,nb_tete,taille_tete):
         super().__init__()
@@ -136,6 +158,63 @@ MultiTetes(32, 4, 8) - 4 têtes de 8 - 32 nombres par lettre
         sorties_tetes=[tete(x) for tete in self.tetes]
         sorties_tetes=torch.cat(sorties_tetes,dim=-1)
         return sorties_tetes
+class FeedForward(nn.Module):
+    """
+    Feed-forward :chaque caractère réfléchit seul à ce qu'il a reçu de l'attention.
+
+    paramètres:
+        embd_dim: nombres par caractère
+    calcul:
+        Linear(embd_dim, 4 * embd_dim) -> ReLU -> Linear(4 * embd_dim, embd_dim)
+
+    formes:
+        entrée x: (b, t, embd_dim)
+        sortie: (b, t, embd_dim)
+"""
+    def __init__(self, embd_dim):
+        super().__init__()
+
+        self.feed_forward=nn.Sequential(
+            nn.Linear(embd_dim,4*embd_dim), # 32 -> 128 (32*4)
+            nn.ReLU(),
+            nn.Linear(4*embd_dim,embd_dim) # 128 -> 32
+        )
+
+    def forward(self,x):
+        x=self.feed_forward(x)
+        return x
+
+class Bloc(nn.Module):
+    """
+    Bloc Transformer : écouter le passé (têtes), puis réfléchir (feed-forward).
+
+    paramètres:
+        embd_dim: nombres par caractère en entrée comme en sortie
+        nb_tetes: nombre de têtes : chacune fait embd_dim // nb_tetes nombres
+
+    calcul:
+        x = x + têtes(LayerNorm(x)),  résiduel : on ajoute au lieu de remplacer
+        x = x + feed_forward(LayerNorm(x))
+
+    formes:
+        entrée x: (b, t, embd_dim)
+        sortie: (b, t, embd_dim)
+    """
+    def __init__(self, embd_dim,nb_tetes):
+        super().__init__()
+        # normaliser les embed nombre de chaque lettre (moyenne=0, ecart type=1)
+        self.ln1=nn.LayerNorm(embd_dim)
+        self.tetes=MultiTetes(embd_dim,nb_tetes,embd_dim// nb_tetes)
+        # normaliser les embed nombre de chaque lettre (moyenne=0, ecart type=1)
+        self.ln2=nn.LayerNorm(embd_dim)
+        self.ff=FeedForward(embd_dim)
+    def forward(self,x):
+        x=x+self.tetes(self.ln1(x)) #pour eviter que chaque bloc remplace entièrement les 32 nbres de chq lettre par sa transformation
+        x=x+self.ff(self.ln2(x))# ajout du residuel,l'info de depart est conservée juste ajout de la correction
+        return x
+
+
+
 
 
 
@@ -156,7 +235,7 @@ if __name__=="__main__":
 
     #print(logits.shape)
     #print(logits[0])
-
+    #print(MiniGPT .__doc__)
 
 
 
