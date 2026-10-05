@@ -1,18 +1,18 @@
-#fichier de config ruff
-ruff.toml
+# Données : reconstruites à partir du Projet Gutenberg (voir README)
+data/
 
-# corpus d'entraînement
-data/train.txt
-
-
-
-# bytecode
-__pycache__/
-
-test.py
-
+# Poids des modèles
 model/
-.ruff_cache/
 
+# Bacs à sable (essais personnels, hors projet)
+test.py
 test_attention.py
+bac_a_sable/
+
+# Fichiers générés par Python et les outils
+__pycache__/
+.ruff_cache/
+.pytest_cache/
+
+# Fichiers système macOS
 .DS_Store
