@@ -17,7 +17,7 @@ intervalle_eval=500
 nb_batchs_eval=200
 #chemin du fichier texte
 chemin=Path(__file__).parent/"data"/"verne_complet.txt"
-chemin_modele=Path(__file__).parent/"model"/"Minigpt_avec_4_tetes.pt"
+chemin_modele=Path(__file__).parent/"model"/"Minigpt_3_blocs.pt"
 #chemin_modele=Path(__file__).parent/"model"/"Bigramme.pt"
 texte=charger_texte(chemin)
 # construction du vocabulaire
@@ -36,7 +36,8 @@ print(len(donnees_train)+len(donnees_val)+len(donnees_test)==n)
 
 #model
 #modele=Bigramme(len(caractere))
-modele= MiniGPT(len(caractere), 32, 4) # 120 lettres , 32 nbres par lettre er 4 têtes
+#modele= MiniGPT(len(caractere), 32, 4) # 120 lettres , 32 nbres par lettre er 4 têtes
+modele= MiniGPT(len(caractere), 32, 4,3) # 3 blocs
 # decorateur pour éviter de suivre le gradient
 @torch.no_grad()
 # fonction pour estimer la perte sur un certain nombre de batchs

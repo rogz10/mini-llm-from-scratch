@@ -16,13 +16,13 @@ longueur=8 # nombre max de lettre données au modèle pour prédire la suivante
 # chemin data et model pt
 chemin=Path(__file__).parent/"data"/"verne_complet.txt"
 #chemin_modele=Path(__file__).parent/"model"/"bigramme.pt"
-chemin_modele=Path(__file__).parent/"model"/"Minigpt_avec_4_tetes.pt"
+chemin_modele=Path(__file__).parent/"model"/"Minigpt_3_blocs.pt"
 texte=charger_texte(chemin)
 # construction
 char_to_id,id_to_char,caractere=construire_vocabulaire(texte)
 print(f" taille caractère :{len(caractere)}")
 #modele=Bigramme(len(caractere))
-modele=MiniGPT(len(caractere),32,4)
+modele=MiniGPT(len(caractere),32,4,3)
 # charger le modèle
 modele.load_state_dict(torch.load(chemin_modele))
 # texte de départ un saut de ligne id 0 forme (1,1)
