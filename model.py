@@ -35,7 +35,7 @@ class Tete(nn.Module):
     jamais celles d'après et en retire une nouvelle description.
 
     paramètres:
-        n_embd:le nombre de nombres qui décrivent chaque lettre à l'entrée (32)
+        embd_dim:le nombre de nombres qui décrivent chaque lettre à l'entrée (32)
         taille_tete:le nombre de nombres de chaque requête, clé et valeur (16 ou 32)
 
         Q = requête : ce que la lettre cherche dans son passé ( ce que je cherche)
@@ -43,21 +43,21 @@ class Tete(nn.Module):
         V = valeur : ce que la lettre transmet à ceux qui la regardent (ce que je donne quand on me regarde)
 
     formes:
-        entrée x: (b, t, n_embd),b = extraits du batch, t = lettres par extrait
+        entrée x: (b, t, embd_dim),b = extraits du batch, t = lettres par extrait
         scores, poids: (b, t, t)ligne i = combien la lettre i regarde chaque lettre
         sortie: (b, t, taille_tete)  chaque lettre, enrichie de son passé
     """
 
-    def __init__(self, n_embd,taille_tete):
+    def __init__(self, embd_dim,taille_tete):
         super().__init__()
-        # n_embd nombres par lettre , taille_tete nombres
-        self.Q=nn.Linear(n_embd,taille_tete,bias=False)    # requete
-        self.K=nn.Linear(n_embd,taille_tete,bias=False)    # clé
-        self.V=nn.Linear(n_embd,taille_tete,bias=False)    # valeur
+        # embd_dim nombres par lettre , taille_tete nombres
+        self.Q=nn.Linear(embd_dim,taille_tete,bias=False)    # requete
+        self.K=nn.Linear(embd_dim,taille_tete,bias=False)    # clé
+        self.V=nn.Linear(embd_dim,taille_tete,bias=False)    # valeur
         self.taille_tete=taille_tete
 
     def forward(self,x):
-        # (b, t, n_embd) -> (b, t, taille_tete)
+        # (b, t, embd_dim) -> (b, t, taille_tete)
         Q=self.Q(x)
         K=self.K(x)
         V=self.V(x)
@@ -82,15 +82,20 @@ class Tete(nn.Module):
         sortie= poids @ V
         return sortie
 
-"""
-MiniGPT sans tête
-"""
+
 class MiniGPT(nn.Module):
-    def __init__(self, taille_vocabulaire,n_embd):
+    """
+MiniGPT , modèle entier
+
+"""
+    def __init__(self, taille_vocabulaire,embd_dim,nb_tetes):
         super().__init__()
-        self.embedding=nn.Embedding(taille_vocabulaire,n_embd)
-        self.sortie=nn.Linear(n_embd,taille_vocabulaire)
-        self.tete=Tete(n_embd,n_embd)
+        self.embedding=nn.Embedding(taille_vocabulaire,embd_dim)
+        self.sortie=nn.Linear(embd_dim,taille_vocabulaire)
+        # embd_dim dimension embedding(nombre de nombre par lettres), 4 têtes et embd_dim//4(taille de chaque têtes=8)
+
+        self.tete=MultiTetes(embd_dim,nb_tetes,embd_dim//nb_tetes)
+        #self.muti_tetes=MultiTetes(embd_dim,4,embd_dim//4)
 
     def forward(self,idx,cible=None):
         logits=self.embedding(idx)
@@ -107,6 +112,33 @@ class MiniGPT(nn.Module):
 
         return sortie,perte_minigpt
 
+class MultiTetes(nn.Module):
+    """
+Plusieurs têtes d'attention en parallèle
+
+paramètres :
+    embd_dim: nombres par lettre à l'entrée
+    nb_tete:nombre de têtes
+    taille_tete: nombres renvoyés par chaque tête pour chaque lettre
+
+formes :
+    entrée x : (b, t, embd_dim)
+    sortie: (b, t, nb_tete x taille_tete)
+
+MultiTetes(32, 4, 8) - 4 têtes de 8 - 32 nombres par lettre
+
+
+"""
+    def __init__(self,embd_dim,nb_tete,taille_tete):
+        super().__init__()
+        self.tetes=nn.ModuleList([Tete(embd_dim,taille_tete) for _ in range(nb_tete)])
+    def forward(self,x):
+        sorties_tetes=[tete(x) for tete in self.tetes]
+        sorties_tetes=torch.cat(sorties_tetes,dim=-1)
+        return sorties_tetes
+
+
+
 if __name__=="__main__":
     modele=Bigramme(120)
     print(modele)
@@ -115,6 +147,12 @@ if __name__=="__main__":
     cible=torch.randint(0,120,(3,8))
     logits,perte=modele(idx,cible)
     print(perte.item())
+    print("#"*50)
+
+    mt=MultiTetes(32,4,8)
+    print(mt(torch.randn(4, 5, 32)).shape)
+    print(sum(p.numel() for p in mt.parameters()))
+    print(MultiTetes(32, 2, 16)(torch.randn(4, 5, 32)).shape)
 
     #print(logits.shape)
     #print(logits[0])
