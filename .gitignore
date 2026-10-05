@@ -4,6 +4,8 @@ ruff.toml
 # corpus d'entraînement
 data/train.txt
 
+
+
 # bytecode
 __pycache__/
 
@@ -13,3 +15,4 @@ model/
 .ruff_cache/
 
 test_attention.py
+.DS_Store
