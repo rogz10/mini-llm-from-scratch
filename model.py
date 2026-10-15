@@ -105,21 +105,14 @@ Modèle de langage caractère : prédit le caractère suivant à chaque position
     def __init__(self, taille_vocabulaire,embd_dim,nb_tetes,nb_blocs):
         super().__init__()
         self.embedding=nn.Embedding(taille_vocabulaire,embd_dim)
-         # embd_dim dimension embedding(nombre de nombre par lettres), 4 têtes et embd_dim//4(taille de chaque têtes=8)
-        #self.tete=MultiTetes(embd_dim,nb_tetes,embd_dim//nb_tetes)
-        # feed
-        #self.fw=FeedForward(embd_dim)
         #(bloc=attention + feed forward)
         # [Bloc(embd_dim,nb_tetes)= creer un bloc, for _ in range(nb_blocs)=crrer autant de bloc de nb_bloc, 3-> [bloc0,... bloc2] , * deballer->(nn.Sequential(bloc0,...bloc2))
         self.blocs=nn.Sequential(*[Bloc(embd_dim,nb_tetes) for _ in range(nb_blocs)])
         self.ln_finale=nn.LayerNorm(embd_dim)
         self.sortie=nn.Linear(embd_dim,taille_vocabulaire)
-        #self.muti_tetes=MultiTetes(embd_dim,4,embd_dim//4)
 
     def forward(self,idx,cible=None):
         x=self.embedding(idx)
-        #x=self.tete(x)
-        #x=self.fw(x)
         x=self.blocs(x)
         x=self.ln_finale(x)
         logits=self.sortie(x)
