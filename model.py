@@ -102,9 +102,10 @@ Modèle de langage caractère : prédit le caractère suivant à chaque position
         perte: entropie croisée si cible est donnée, sinon None
 
 """
-    def __init__(self, taille_vocabulaire,embd_dim,nb_tetes,nb_blocs):
+    def __init__(self, taille_vocabulaire,embd_dim,nb_tetes,nb_blocs,longueur):
         super().__init__()
         self.embedding=nn.Embedding(taille_vocabulaire,embd_dim)
+        self.position_embedding=nn.Embedding(longueur,embd_dim) # position embedding : chaque position a un vecteur de nombres qui lui est propre
         #(bloc=attention + feed forward)
         # [Bloc(embd_dim,nb_tetes)= creer un bloc, for _ in range(nb_blocs)=crrer autant de bloc de nb_bloc, 3-> [bloc0,... bloc2] , * deballer->(nn.Sequential(bloc0,...bloc2))
         self.blocs=nn.Sequential(*[Bloc(embd_dim,nb_tetes) for _ in range(nb_blocs)])
@@ -112,7 +113,11 @@ Modèle de langage caractère : prédit le caractère suivant à chaque position
         self.sortie=nn.Linear(embd_dim,taille_vocabulaire)
 
     def forward(self,idx,cible=None):
-        x=self.embedding(idx)
+        # idx (b, t) -> embedding (b, t, embd_dim)
+        _,t=idx.shape # t=taille de l'extrait
+        positions=torch.arange(t) # (t)
+        x=self.embedding(idx) # vecteur de nombres par lettre
+        x=x+self.position_embedding(positions) # ajout du vecteur de position à chaque lettre
         x=self.blocs(x)
         x=self.ln_finale(x)
         logits=self.sortie(x)
