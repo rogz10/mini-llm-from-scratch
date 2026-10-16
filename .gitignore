@@ -7,6 +7,7 @@ model/
 # Bacs à sable (essais personnels, hors projet)
 test.py
 test_attention.py
+attention.py
 bac_a_sable/
 
 # Fichiers générés par Python et les outils
@@ -16,3 +17,4 @@ __pycache__/
 
 # Fichiers système macOS
 .DS_Store
+Screenshots/

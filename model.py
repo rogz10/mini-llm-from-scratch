@@ -48,14 +48,14 @@ class Tete(nn.Module):
         sortie: (b, t, taille_tete)  chaque lettre, enrichie de son passé
     """
 
-    def __init__(self, embd_dim,taille_tete):
+    def __init__(self, embd_dim,taille_tete,dropout):
         super().__init__()
         # embd_dim nombres par lettre , taille_tete nombres
         self.Q=nn.Linear(embd_dim,taille_tete,bias=False)    # requete
         self.K=nn.Linear(embd_dim,taille_tete,bias=False)    # clé
         self.V=nn.Linear(embd_dim,taille_tete,bias=False)    # valeur
         self.taille_tete=taille_tete
-
+        self.dropout=nn.Dropout(dropout)
     def forward(self,x):
         # (b, t, embd_dim) -> (b, t, taille_tete)
         Q=self.Q(x)
@@ -71,12 +71,13 @@ class Tete(nn.Module):
         # nombre de lettres de l'extrait
         _,t,_=x.shape
         # triangle : 1 = lettre autorisée (passé et soi-même), 0 = lettre d'après
-        triangle_matrice=torch.tril(torch.ones(t,t))
+        triangle_matrice=torch.tril(torch.ones(t,t,device=x.device))
 
         # masque, -inf lettres d'après pour que softmax leur donne 0 %
         scores=scores.masked_fill(triangle_matrice==0,float("-inf"))
         # notes -> parts, chaque ligne fait 100 %
         poids=F.softmax(scores,dim=-1)
+        poids=self.dropout(poids)
 
         # chaque lettre récupère les valeurs de son passé, selon ses parts;(b,t,taille_tete)
         sortie= poids @ V
@@ -93,7 +94,7 @@ Modèle de langage caractère : prédit le caractère suivant à chaque position
         nb_tetes: têtes d'attention dans chaque bloc (4)
         nb_blocs: blocs Transformer empilés (3)
         longueur: longueur maximale de caractères donnés au modèle  pour prédire le suivant (32)
-
+        dropout: taux de dropout pour la régularisation (0.2)
     chemin des données:
         idx (b, t) -> embedding (b, t, embd_dim)+ position(t, embd_dim) -> nb_blocs blocs (b, t, embd_dim)
         ->LayerNorm finale -> sortie (b, t, taille_vocabulaire)
@@ -103,20 +104,20 @@ Modèle de langage caractère : prédit le caractère suivant à chaque position
         perte: entropie croisée si cible est donnée, sinon None
 
 """
-    def __init__(self, taille_vocabulaire,embd_dim,nb_tetes,nb_blocs,longueur):
+    def __init__(self, taille_vocabulaire,embd_dim,nb_tetes,nb_blocs,longueur,dropout):
         super().__init__()
         self.embedding=nn.Embedding(taille_vocabulaire,embd_dim)
         self.position_embedding=nn.Embedding(longueur,embd_dim) # position embedding : chaque position a un vecteur de nombres qui lui est propre
         #(bloc=attention + feed forward)
         # [Bloc(embd_dim,nb_tetes)= creer un bloc, for _ in range(nb_blocs)=crrer autant de bloc de nb_bloc, 3-> [bloc0,... bloc2] , * deballer->(nn.Sequential(bloc0,...bloc2))
-        self.blocs=nn.Sequential(*[Bloc(embd_dim,nb_tetes) for _ in range(nb_blocs)])
+        self.blocs=nn.Sequential(*[Bloc(embd_dim,nb_tetes,dropout) for _ in range(nb_blocs)])
         self.ln_finale=nn.LayerNorm(embd_dim)
         self.sortie=nn.Linear(embd_dim,taille_vocabulaire)
 
     def forward(self,idx,cible=None):
         # idx (b, t) -> embedding (b, t, embd_dim)
         _,t=idx.shape # t=taille de l'extrait
-        positions=torch.arange(t) # (t,)
+        positions=torch.arange(t,device=idx.device) # vecteur de positions (0,1,...,t-1)
         x=self.embedding(idx) # vecteur de nombres par lettre
         x=x+self.position_embedding(positions) # ajout du vecteur de position à chaque lettre
         x=self.blocs(x)
@@ -150,12 +151,16 @@ formes :
 MultiTetes(32, 4, 8) - 4 têtes de 8 - 32 nombres par lettre
 
 """
-    def __init__(self,embd_dim,nb_tete,taille_tete):
+    def __init__(self,embd_dim,nb_tete,taille_tete,dropout):
         super().__init__()
-        self.tetes=nn.ModuleList([Tete(embd_dim,taille_tete) for _ in range(nb_tete)])
+        self.projection=nn.Linear(nb_tete*taille_tete,embd_dim) # 4 têtes de 8 nombres = 32 nombres par lettre
+        self.dropout=nn.Dropout(dropout)
+        self.tetes=nn.ModuleList([Tete(embd_dim,taille_tete,dropout) for _ in range(nb_tete)])
     def forward(self,x):
         sorties_tetes=[tete(x) for tete in self.tetes]
         sorties_tetes=torch.cat(sorties_tetes,dim=-1)
+        sorties_tetes=self.projection(sorties_tetes)
+        sorties_tetes=self.dropout(sorties_tetes)
         return sorties_tetes
 class FeedForward(nn.Module):
     """
@@ -170,14 +175,16 @@ class FeedForward(nn.Module):
         entrée x: (b, t, embd_dim)
         sortie: (b, t, embd_dim)
 """
-    def __init__(self, embd_dim):
+    def __init__(self, embd_dim,dropout):
         super().__init__()
 
         self.feed_forward=nn.Sequential(
             nn.Linear(embd_dim,4*embd_dim), # 32 -> 128 (32*4)
             nn.ReLU(),
-            nn.Linear(4*embd_dim,embd_dim) # 128 -> 32
+            nn.Linear(4*embd_dim,embd_dim), # 128 -> 32
+            nn.Dropout(dropout)
         )
+
 
     def forward(self,x):
         x=self.feed_forward(x)
@@ -199,14 +206,14 @@ class Bloc(nn.Module):
         entrée x: (b, t, embd_dim)
         sortie: (b, t, embd_dim)
     """
-    def __init__(self, embd_dim,nb_tetes):
+    def __init__(self, embd_dim,nb_tetes,dropout):
         super().__init__()
         # normaliser les embed nombre de chaque lettre (moyenne=0, ecart type=1)
         self.ln1=nn.LayerNorm(embd_dim)
-        self.tetes=MultiTetes(embd_dim,nb_tetes,embd_dim// nb_tetes)
+        self.tetes=MultiTetes(embd_dim,nb_tetes,embd_dim// nb_tetes,dropout)
         # normaliser les embed nombre de chaque lettre (moyenne=0, ecart type=1)
         self.ln2=nn.LayerNorm(embd_dim)
-        self.ff=FeedForward(embd_dim)
+        self.ff=FeedForward(embd_dim,dropout)
     def forward(self,x):
         x=x+self.tetes(self.ln1(x)) #pour eviter que chaque bloc remplace entièrement les 32 nbres de chq lettre par sa transformation
         x=x+self.ff(self.ln2(x))# ajout du residuel,l'info de depart est conservée juste ajout de la correction
