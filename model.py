@@ -92,9 +92,10 @@ Modèle de langage caractère : prédit le caractère suivant à chaque position
         embd_dim: nombres qui décrivent chaque caractère (32)
         nb_tetes: têtes d'attention dans chaque bloc (4)
         nb_blocs: blocs Transformer empilés (3)
+        longueur: longueur maximale de caractères donnés au modèle  pour prédire le suivant (32)
 
     chemin des données:
-        idx (b, t) -> embedding (b, t, embd_dim) -> nb_blocs blocs (b, t, embd_dim)
+        idx (b, t) -> embedding (b, t, embd_dim)+ position(t, embd_dim) -> nb_blocs blocs (b, t, embd_dim)
         ->LayerNorm finale -> sortie (b, t, taille_vocabulaire)
 
     renvoie:
@@ -115,7 +116,7 @@ Modèle de langage caractère : prédit le caractère suivant à chaque position
     def forward(self,idx,cible=None):
         # idx (b, t) -> embedding (b, t, embd_dim)
         _,t=idx.shape # t=taille de l'extrait
-        positions=torch.arange(t) # (t)
+        positions=torch.arange(t) # (t,)
         x=self.embedding(idx) # vecteur de nombres par lettre
         x=x+self.position_embedding(positions) # ajout du vecteur de position à chaque lettre
         x=self.blocs(x)

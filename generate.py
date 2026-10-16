@@ -1,5 +1,5 @@
 """
-Génération du texte avec le modèle MiniGPT entrainé, charger les poids du modèle save par train.py
+Génération de mot  avec le modèle MiniGPT entrainé, charger les poids du modèle save par train.py
 partir d'un saut de ligne id 0 , ajoute nb_nouveaux caractère tirés au sort un par un puis decoder les ids et afficher le texte
 
 """
@@ -11,18 +11,19 @@ import torch.nn.functional as F
 from model import MiniGPT
 from tokenizer import charger_texte, construire_vocabulaire, decode
 
-nb_nouveaux=200 # nombre de nouveaux caractères à générer
-longueur=8 # nombre max de lettre données au modèle pour prédire la suivante
+torch.manual_seed(42) # pour reproductibilité
+nb_nouveaux=1000 # nombre de nouveaux caractères à générer
+longueur=32 # nombre max de lettre données au modèle pour prédire la suivante
 # chemin data et model pt
 chemin=Path(__file__).parent/"data"/"verne_complet.txt"
 #chemin_modele=Path(__file__).parent/"model"/"bigramme.pt"
-chemin_modele=Path(__file__).parent/"model"/"Minigpt_3_blocs.pt"
+chemin_modele=Path(__file__).parent/"model"/"Minigpt_3_blocs_position_32.pt"
 texte=charger_texte(chemin)
 # construction
 char_to_id,id_to_char,caractere=construire_vocabulaire(texte)
 print(f" taille caractère :{len(caractere)}")
 #modele=Bigramme(len(caractere))
-modele=MiniGPT(len(caractere),32,4,3)
+modele=MiniGPT(len(caractere),32,4,3,longueur) # 3 blocs, 32 nombres par lettre, 4 têtes
 # charger le modèle
 modele.load_state_dict(torch.load(chemin_modele))
 # texte de départ un saut de ligne id 0 forme (1,1)
@@ -41,7 +42,8 @@ return  :les ids du texte complet forme (1, t + nb_nouveaux)
 description :
 
 A chaque tour (t = longueur actuelle du texte, 120 = taille du vocabulaire)
-logits(1, t, 120) : 120 scores pour chaque caractère d'entrée un par candidat
+idx_contexte (1, min(t, longueur)): les longueur derniers ids au plus ce que reçoit le modèle
+logits(1, min(t, longueur), 120) : 120 scores pour chaque caractère reçu un par candidat
 last_score (1, 120): les 120 scores du dernier caractère
 proba(1, 120):scores changés en probabilités (entre 0 et 1 somme = 1)
 id_tire(1, 1): l'id du caractère tiré au sort (multinomial)
@@ -51,7 +53,7 @@ t= grandit à chaque tour de boucle (t+=1)
 
 # boucle pour tirer un caractère à la fois et l'ajouter au texte
     for _ in range(nb_nouveaux): # boucle de génération
-        idx_contexte=idx_texte[:,-longueur:] # ne garder que les derniers caractères pour la prédiction
+        idx_contexte=idx_texte[:, -longueur:]  # garder les derniers caractères (longueur) pour prédire le suivant
         logits,_ =modele(idx_contexte) # calcul des logits
 
         last_score=logits[:,-1,:]
@@ -73,6 +75,17 @@ print(resultat_list)
 print("#"*50)
 texte_generer=decode(resultat_list,id_to_char) #decode les ids en texte
 print(f"texte généré: {texte_generer}")
+# sauvegarde du texte généré dans un fichier
+chemin_texte_genere=Path(__file__).parent/"exemples"/"texte_genere_seance09_contexte_32.txt"
+nb_parametres=sum(p.numel() for p in modele.parameters()) # 43 544
+with open(chemin_texte_genere,"w",encoding="utf-8") as f:
+    f.write("Modèle: MiniGPT, 3 blocs, 4 têtes, embd_dim 32\n")
+    f.write(f"Contexte: {longueur} caractères | paramètres: {nb_parametres}\n")
+    f.write("Perte test: 1,852\n")
+    f.write(f"Graine: 42 | caractères générés: {nb_nouveaux}\n")
+    f.write("\n")
+    f.write(texte_generer)
+
 
 
 
