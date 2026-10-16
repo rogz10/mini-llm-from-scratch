@@ -13,21 +13,37 @@ from tokenizer import charger_texte, construire_vocabulaire, decode
 
 torch.manual_seed(42) # pour reproductibilité
 nb_nouveaux=1000 # nombre de nouveaux caractères à générer
-longueur=32 # nombre max de lettre données au modèle pour prédire la suivante
+longueur=256 # nombre max de lettre données au modèle pour prédire la suivante
+embd_dim=384
+nb_tetes=6
+nb_blocs=6
+dropout=0.2
+if torch.cuda.is_available():
+    device=torch.device("cuda")
+elif torch.backends.mps.is_available():
+    device=torch.device("mps")
+else:
+    device=torch.device("cpu")
+#print(f"device: {device}")
+
 # chemin data et model pt
 chemin=Path(__file__).parent/"data"/"verne_complet.txt"
 #chemin_modele=Path(__file__).parent/"model"/"bigramme.pt"
-chemin_modele=Path(__file__).parent/"model"/"Minigpt_3_blocs_position_32.pt"
+chemin_modele=Path(__file__).parent/"model"/"MiniGPT_10M.pt"
 texte=charger_texte(chemin)
 # construction
 char_to_id,id_to_char,caractere=construire_vocabulaire(texte)
 print(f" taille caractère :{len(caractere)}")
 #modele=Bigramme(len(caractere))
-modele=MiniGPT(len(caractere),32,4,3,longueur) # 3 blocs, 32 nombres par lettre, 4 têtes
+#modele=MiniGPT(len(caractere),32,4,3,longueur) # 3 blocs, 32 nombres par lettre, 4 têtes
+modele=MiniGPT(len(caractere),embd_dim,nb_tetes,nb_blocs,longueur,dropout)
 # charger le modèle
-modele.load_state_dict(torch.load(chemin_modele))
+#modele.load_state_dict(torch.load(chemin_modele))
+modele.load_state_dict(torch.load(chemin_modele,map_location=device))
+modele.to(device) # deplacer le modèle sur le device
+modele.eval() # mode evaluation, pas de dropout
 # texte de départ un saut de ligne id 0 forme (1,1)
-idx_depart=torch.zeros((1,1),dtype=torch.long)
+idx_depart=torch.zeros((1,1),device=device,dtype=torch.long)
 
 @torch.no_grad()
 def generer(modele,idx_texte,nb_nouveaux):
@@ -76,12 +92,12 @@ print("#"*50)
 texte_generer=decode(resultat_list,id_to_char) #decode les ids en texte
 print(f"texte généré: {texte_generer}")
 # sauvegarde du texte généré dans un fichier
-chemin_texte_genere=Path(__file__).parent/"exemples"/"texte_genere_seance09_contexte_32.txt"
+chemin_texte_genere=Path(__file__).parent/"exemples"/"texte_genere_MiniGPT_10M.txt"
 nb_parametres=sum(p.numel() for p in modele.parameters()) # 43 544
 with open(chemin_texte_genere,"w",encoding="utf-8") as f:
-    f.write("Modèle: MiniGPT, 3 blocs, 4 têtes, embd_dim 32\n")
+    f.write(f"Modèle: MiniGPT,{nb_blocs} blocs, {nb_tetes} têtes, embd_dim {embd_dim}\n")
     f.write(f"Contexte: {longueur} caractères | paramètres: {nb_parametres}\n")
-    f.write("Perte test: 1,852\n")
+    f.write("Perte test: 1.245\n")
     f.write(f"Graine: 42 | caractères générés: {nb_nouveaux}\n")
     f.write("\n")
     f.write(texte_generer)
