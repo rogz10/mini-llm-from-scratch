@@ -15,9 +15,19 @@ longueur=32
 lr=0.01
 intervalle_eval=500
 nb_batchs_eval=200
+dropout=0.2
+
+# device
+if torch.cuda.is_available():
+    device=torch.device("cuda")
+elif torch.backends.mps.is_available():
+    device=torch.device("mps")
+else:
+    device=torch.device("cpu")
+print(f"device: {device}")
 #chemin du fichier texte
 chemin=Path(__file__).parent/"data"/"verne_complet.txt"
-chemin_modele=Path(__file__).parent/"model"/"Minigpt_3_blocs_position_32.pt"
+chemin_modele=Path(__file__).parent/"model"/"Modele_grand_saut.pt"
 #chemin_modele=Path(__file__).parent/"model"/"Bigramme.pt"
 texte=charger_texte(chemin)
 # construction du vocabulaire
@@ -37,17 +47,22 @@ print(len(donnees_train)+len(donnees_val)+len(donnees_test)==n)
 #model
 #modele=Bigramme(len(caractere))
 #modele= MiniGPT(len(caractere), 32, 4) # 120 lettres , 32 nbres par lettre er 4 têtes
-modele= MiniGPT(len(caractere), 32, 4,3,longueur) # 3 blocs
+modele= MiniGPT(len(caractere), 32, 4,3,longueur,dropout) # 3 blocs
+modele.to(device)# deplacer le modèle sur le device
 # decorateur pour éviter de suivre le gradient
 @torch.no_grad()
 # fonction pour estimer la perte sur un certain nombre de batchs
 def estimer_perte(modele,donnees,nb_batchs):
+    modele.eval() # mode evaluation, pas de dropout
     perte_total=[]
     for _ in range(nb_batchs):
         x_estimer_perte,y_estimer_perte=creer_batch(donnees,taille_batch,longueur)
+        # deplacer les batchs sur le device
+        x_estimer_perte,y_estimer_perte=x_estimer_perte.to(device),y_estimer_perte.to(device)
         _,loss_estimer_perte=modele(x_estimer_perte,y_estimer_perte)
         perte_total.append(loss_estimer_perte)
     moyenne_perte=(sum(perte_total))/len(perte_total)
+    modele.train() # mode entrainement, dropout activé
     return moyenne_perte.item()
 
 # optimiseur
@@ -60,6 +75,7 @@ print(f"paramètres du modèle:{sum(p.numel() for p in modele.parameters())}")
 for pas in range(nb_pas+1):
     # selection du batch
     x,y=creer_batch(donnees_train,taille_batch,longueur)
+    x,y=x.to(device),y.to(device)
     # reset du gradient
     optimiseur.zero_grad()
     #calcul de la perte
