@@ -13,6 +13,8 @@ from tokenizer import charger_texte, construire_vocabulaire, decode
 
 torch.manual_seed(42) # pour reproductibilité
 nb_nouveaux=1000 # nombre de nouveaux caractères à générer
+temperature=1.5 # température pour le tirage au sort, 1.0 = pas de changement, <1.0 = plus conservatif, >1.0 = plus aléatoire
+top_k=10 # top k pour le tirage au sort, 10 = ne garder que les 10 caractères les plus probables pour tirer au sort
 longueur=256 # nombre max de lettre données au modèle pour prédire la suivante
 embd_dim=384
 nb_tetes=6
@@ -46,7 +48,7 @@ modele.eval() # mode evaluation, pas de dropout
 idx_depart=torch.zeros((1,1),device=device,dtype=torch.long)
 
 @torch.no_grad()
-def generer(modele,idx_texte,nb_nouveaux):
+def generer(modele,idx_texte,nb_nouveaux,temperature,top_k):
     """
 paramètres :
 modele: le modèle qui donne les scores (mini GPT)
@@ -72,7 +74,10 @@ t= grandit à chaque tour de boucle (t+=1)
         idx_contexte=idx_texte[:, -longueur:]  # garder les derniers caractères (longueur) pour prédire le suivant
         logits,_ =modele(idx_contexte) # calcul des logits
 
-        last_score=logits[:,-1,:]
+        last_score=logits[:,-1,:]/temperature # les scores du dernier caractère divisé par la température
+        v,_=torch.topk(last_score,top_k)
+        seuil = v[:, [-1]] # le score du dernier des 10
+        last_score[last_score < seuil] = float("-inf") # les scores des caractères hors top k sont mis à -inf pour que softmax leur donne 0 %
         proba=F.softmax(last_score,dim=-1) # probabilités pour chaque caractère
         id_tire=torch.multinomial(proba,num_samples=1) # tirer un id au hasard selon les probabilités
         idx_texte=torch.cat((idx_texte,id_tire), dim=1) # concaténer le nouvel id au texte existant
@@ -81,7 +86,9 @@ t= grandit à chaque tour de boucle (t+=1)
     return idx_texte
 
 
-resultat=generer(modele,idx_depart,nb_nouveaux)
+
+
+resultat=generer(modele,idx_depart,nb_nouveaux,temperature,top_k)
 
 print(f"résultat:{resultat}")
 print(f"taille de resultat avant conversion en liste:{resultat.shape}")
@@ -92,10 +99,10 @@ print("#"*50)
 texte_generer=decode(resultat_list,id_to_char) #decode les ids en texte
 print(f"texte généré: {texte_generer}")
 # sauvegarde du texte généré dans un fichier
-chemin_texte_genere=Path(__file__).parent/"exemples"/"texte_genere_MiniGPT_10M.txt"
+chemin_texte_genere=Path(__file__).parent/"exemples"/"texte_genere_MiniGPT_10M_T_1.5_top_k_10.txt"
 nb_parametres=sum(p.numel() for p in modele.parameters()) # 43 544
 with open(chemin_texte_genere,"w",encoding="utf-8") as f:
-    f.write(f"Modèle: MiniGPT,{nb_blocs} blocs, {nb_tetes} têtes, embd_dim {embd_dim}\n")
+    f.write(f"Modèle: MiniGPT,{nb_blocs} blocs, {nb_tetes} têtes, embd_dim {embd_dim}, temperature {temperature}\n")
     f.write(f"Contexte: {longueur} caractères | paramètres: {nb_parametres}\n")
     f.write("Perte test: 1.245\n")
     f.write(f"Graine: 42 | caractères générés: {nb_nouveaux}\n")
