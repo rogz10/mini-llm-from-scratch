@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 
 import torch
@@ -10,12 +11,20 @@ from tokenizer import charger_texte, construire_vocabulaire, encode
 torch.manual_seed(42)
 # hyperparamètres
 nb_pas=5000
-taille_batch=32
-longueur=32
-lr=0.01
+#taille_batch=32
+taille_batch=64
+
+#longueur=32
+longueur=256
+#lr=0.01
+lr=1e-3
 intervalle_eval=500
 nb_batchs_eval=200
 dropout=0.2
+embd_dim=384
+nb_tetes=6
+nb_blocs=6
+
 
 # device
 if torch.cuda.is_available():
@@ -27,7 +36,8 @@ else:
 print(f"device: {device}")
 #chemin du fichier texte
 chemin=Path(__file__).parent/"data"/"verne_complet.txt"
-chemin_modele=Path(__file__).parent/"model"/"Modele_grand_saut.pt"
+#chemin_modele=Path(__file__).parent/"model"/"Modele_grand_saut.pt"
+chemin_modele=Path(__file__).parent/"model"/"MiniGPT_10M.pt"
 #chemin_modele=Path(__file__).parent/"model"/"Bigramme.pt"
 texte=charger_texte(chemin)
 # construction du vocabulaire
@@ -47,7 +57,8 @@ print(len(donnees_train)+len(donnees_val)+len(donnees_test)==n)
 #model
 #modele=Bigramme(len(caractere))
 #modele= MiniGPT(len(caractere), 32, 4) # 120 lettres , 32 nbres par lettre er 4 têtes
-modele= MiniGPT(len(caractere), 32, 4,3,longueur,dropout) # 3 blocs
+#modele= MiniGPT(len(caractere), 32, 4,3,longueur,dropout) # 3 blocs
+modele= MiniGPT(len(caractere), embd_dim, nb_tetes, nb_blocs,longueur,dropout) # 6 blocs, 384 nombres par lettre, 6 têtes
 modele.to(device)# deplacer le modèle sur le device
 # decorateur pour éviter de suivre le gradient
 @torch.no_grad()
@@ -55,6 +66,7 @@ modele.to(device)# deplacer le modèle sur le device
 def estimer_perte(modele,donnees,nb_batchs):
     modele.eval() # mode evaluation, pas de dropout
     perte_total=[]
+
     for _ in range(nb_batchs):
         x_estimer_perte,y_estimer_perte=creer_batch(donnees,taille_batch,longueur)
         # deplacer les batchs sur le device
@@ -63,6 +75,7 @@ def estimer_perte(modele,donnees,nb_batchs):
         perte_total.append(loss_estimer_perte)
     moyenne_perte=(sum(perte_total))/len(perte_total)
     modele.train() # mode entrainement, dropout activé
+
     return moyenne_perte.item()
 
 # optimiseur
@@ -72,7 +85,9 @@ print(f"corpus :{len(texte)} caractères | vocabulaire :{len(caractere)} caract�
 print(f"paramètres du modèle:{sum(p.numel() for p in modele.parameters())}")
 
 # entraînement
+debut=time.time()
 for pas in range(nb_pas+1):
+
     # selection du batch
     x,y=creer_batch(donnees_train,taille_batch,longueur)
     x,y=x.to(device),y.to(device)
@@ -88,6 +103,8 @@ for pas in range(nb_pas+1):
         perte_val=estimer_perte(modele, donnees_val, nb_batchs_eval)
 
         print(f"pas:{pas:4d} | loss train :{perte_train:.3f}| loss val: {perte_val:.3f} ")
+
+        print(f"temps ecoule depuis le debut: {time.time()-debut:.2f} secondes")
 # evaluation finale sur le test set
 perte_test=estimer_perte(modele, donnees_test, nb_batchs_eval)
 print(f"perte finale sur le test set :{perte_test:.3f}")
