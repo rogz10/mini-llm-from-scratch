@@ -11,13 +11,13 @@ torch.manual_seed(42)
 # hyperparamètres
 nb_pas=5000
 taille_batch=32
-longueur=8
+longueur=32
 lr=0.01
 intervalle_eval=500
 nb_batchs_eval=200
 #chemin du fichier texte
 chemin=Path(__file__).parent/"data"/"verne_complet.txt"
-chemin_modele=Path(__file__).parent/"model"/"Minigpt_3_blocs.pt"
+chemin_modele=Path(__file__).parent/"model"/"Minigpt_3_blocs_position_32.pt"
 #chemin_modele=Path(__file__).parent/"model"/"Bigramme.pt"
 texte=charger_texte(chemin)
 # construction du vocabulaire
@@ -37,7 +37,7 @@ print(len(donnees_train)+len(donnees_val)+len(donnees_test)==n)
 #model
 #modele=Bigramme(len(caractere))
 #modele= MiniGPT(len(caractere), 32, 4) # 120 lettres , 32 nbres par lettre er 4 têtes
-modele= MiniGPT(len(caractere), 32, 4,3) # 3 blocs
+modele= MiniGPT(len(caractere), 32, 4,3,longueur) # 3 blocs
 # decorateur pour éviter de suivre le gradient
 @torch.no_grad()
 # fonction pour estimer la perte sur un certain nombre de batchs
