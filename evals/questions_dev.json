@@ -1,0 +1,578 @@
+[
+ {
+  "famille": "personnages",
+  "prefixe": "Cyrus ",
+  "candidats": [
+   "Smith ",
+   "Ladko ",
+   "Davis ",
+   "Young "
+  ],
+  "attendu": "Smith ",
+  "preuve": {
+   "occurrences_train": 783,
+   "dominance": 0.899
+  },
+  "id": "dev-000"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Paulina ",
+  "candidats": [
+   "Dragoch ",
+   "Karraje ",
+   "Barnett ",
+   "Ogareff "
+  ],
+  "attendu": "Barnett ",
+  "preuve": {
+   "occurrences_train": 406,
+   "dominance": 1.0
+  },
+  "id": "dev-001"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Gédéon ",
+  "candidats": [
+   "Vasling ",
+   "Spilett ",
+   "Shandon ",
+   "Karraje "
+  ],
+  "attendu": "Spilett ",
+  "preuve": {
+   "occurrences_train": 343,
+   "dominance": 0.98
+  },
+  "id": "dev-002"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Phileas ",
+  "candidats": [
+   "Fogg ",
+   "Zorn ",
+   "Ogul ",
+   "Land "
+  ],
+  "attendu": "Fogg ",
+  "preuve": {
+   "occurrences_train": 268,
+   "dominance": 1.0
+  },
+  "id": "dev-003"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Ilia ",
+  "candidats": [
+   "Hobson ",
+   "Burker ",
+   "Tapage ",
+   "Brusch "
+  ],
+  "attendu": "Brusch ",
+  "preuve": {
+   "occurrences_train": 249,
+   "dominance": 1.0
+  },
+  "id": "dev-004"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Serge ",
+  "candidats": [
+   "Ladko ",
+   "Joyce ",
+   "Singh ",
+   "Evans "
+  ],
+  "attendu": "Ladko ",
+  "preuve": {
+   "occurrences_train": 206,
+   "dominance": 1.0
+  },
+  "id": "dev-005"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Nicolas ",
+  "candidats": [
+   "Burbank ",
+   "Starkos ",
+   "Machell ",
+   "Ogareff "
+  ],
+  "attendu": "Starkos ",
+  "preuve": {
+   "occurrences_train": 193,
+   "dominance": 0.877
+  },
+  "id": "dev-006"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Ker ",
+  "candidats": [
+   "Shandon ",
+   "Burbank ",
+   "Jolivet ",
+   "Karraje "
+  ],
+  "attendu": "Karraje ",
+  "preuve": {
+   "occurrences_train": 107,
+   "dominance": 1.0
+  },
+  "id": "dev-007"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Jos ",
+  "candidats": [
+   "Halley ",
+   "Meritt ",
+   "Hansen ",
+   "Harald "
+  ],
+  "attendu": "Meritt ",
+  "preuve": {
+   "occurrences_train": 67,
+   "dominance": 1.0
+  },
+  "id": "dev-008"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Ole ",
+  "candidats": [
+   "Ryan ",
+   "Kamp ",
+   "Hoel ",
+   "Deck "
+  ],
+  "attendu": "Kamp ",
+  "preuve": {
+   "occurrences_train": 64,
+   "dominance": 1.0
+  },
+  "id": "dev-009"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Jem ",
+  "candidats": [
+   "Cornbutte ",
+   "Tankerdon ",
+   "Barbicane ",
+   "Niklausse "
+  ],
+  "attendu": "Tankerdon ",
+  "preuve": {
+   "occurrences_train": 44,
+   "dominance": 0.815
+  },
+  "id": "dev-010"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Jan ",
+  "candidats": [
+   "Brusch ",
+   "Burker ",
+   "Hansen ",
+   "Harald "
+  ],
+  "attendu": "Harald ",
+  "preuve": {
+   "occurrences_train": 18,
+   "dominance": 0.947
+  },
+  "id": "dev-011"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "François ",
+  "candidats": [
+   "Brusch ",
+   "Hobson ",
+   "Tapage ",
+   "Hansen "
+  ],
+  "attendu": "Tapage ",
+  "preuve": {
+   "occurrences_train": 11,
+   "dominance": 0.846
+  },
+  "id": "dev-012"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Boris ",
+  "candidats": [
+   "Tapage ",
+   "Meritt ",
+   "Burker ",
+   "Karkof "
+  ],
+  "attendu": "Karkof ",
+  "preuve": {
+   "occurrences_train": 11,
+   "dominance": 1.0
+  },
+  "id": "dev-013"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Alice ",
+  "candidats": [
+   "Elizundo ",
+   "Scorbitt ",
+   "Harcourt ",
+   "Stannard "
+  ],
+  "attendu": "Stannard ",
+  "preuve": {
+   "occurrences_train": 11,
+   "dominance": 1.0
+  },
+  "id": "dev-014"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Evangélina ",
+  "candidats": [
+   "Stannard ",
+   "Elizundo ",
+   "Baldenak ",
+   "Scorbitt "
+  ],
+  "attendu": "Scorbitt ",
+  "preuve": {
+   "occurrences_train": 6,
+   "dominance": 1.0
+  },
+  "id": "dev-015"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Sam ",
+  "candidats": [
+   "Dragoch ",
+   "Spilett ",
+   "Ulhmann ",
+   "Machell "
+  ],
+  "attendu": "Machell ",
+  "preuve": {
+   "occurrences_train": 6,
+   "dominance": 1.0
+  },
+  "id": "dev-016"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Brigham ",
+  "candidats": [
+   "Grant ",
+   "Young ",
+   "Evans ",
+   "Ralph "
+  ],
+  "attendu": "Young ",
+  "preuve": {
+   "occurrences_train": 5,
+   "dominance": 1.0
+  },
+  "id": "dev-017"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Andronika ",
+  "candidats": [
+   "Karraje ",
+   "Starkos ",
+   "Barnett ",
+   "Vasling "
+  ],
+  "attendu": "Starkos ",
+  "preuve": {
+   "occurrences_train": 5,
+   "dominance": 1.0
+  },
+  "id": "dev-018"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Pour descendre vers le centre de la Terre, ils entrèrent dans le cratère du ",
+  "candidats": [
+   "Sneffels ",
+   "Calcutta ",
+   "Irkoutsk ",
+   "Lisbonne "
+  ],
+  "attendu": "Sneffels ",
+  "preuve": {
+   "cle": "cratère",
+   "confirmations_train": 22
+  },
+  "id": "dev-019"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le gentleman qui paria de faire le tour du monde en quatre-vingts jours s'appelait Phileas ",
+  "candidats": [
+   "Zorn ",
+   "Axel ",
+   "Fogg ",
+   "Nemo "
+  ],
+  "attendu": "Fogg ",
+  "preuve": {
+   "cle": "quatre-vingts jours",
+   "confirmations_train": 15
+  },
+  "id": "dev-020"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le policier qui poursuivait Phileas Fogg autour du monde s'appelait ",
+  "candidats": [
+   "Joe ",
+   "Fix ",
+   "Nab ",
+   "Hog "
+  ],
+  "attendu": "Fix ",
+  "preuve": {
+   "cle": "Fogg",
+   "confirmations_train": 244
+  },
+  "id": "dev-021"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Michel Strogoff devait porter la lettre du tsar jusqu'à la ville nommée ",
+  "candidats": [
+   "Sneffels ",
+   "Belgrade ",
+   "Irkoutsk ",
+   "Hambourg "
+  ],
+  "attendu": "Irkoutsk ",
+  "preuve": {
+   "cle": "Strogoff",
+   "confirmations_train": 178
+  },
+  "id": "dev-022"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le secrétaire du Gun-Club, qui avait un crochet à la place de la main, s'appelait J.-T. ",
+  "candidats": [
+   "Blount ",
+   "Gédéon ",
+   "Benito ",
+   "Maston "
+  ],
+  "attendu": "Maston ",
+  "preuve": {
+   "cle": "Gun-Club",
+   "confirmations_train": 84
+  },
+  "id": "dev-023"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "L'ingénieur qui commandait les naufragés de l'île Lincoln s'appelait Cyrus ",
+  "candidats": [
+   "Smith ",
+   "Huber ",
+   "Minha ",
+   "Ahmet "
+  ],
+  "attendu": "Smith ",
+  "preuve": {
+   "cle": "Lincoln",
+   "confirmations_train": 74
+  },
+  "id": "dev-024"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le reporter des naufragés de l'île Lincoln s'appelait Gédéon ",
+  "candidats": [
+   "Nicholl ",
+   "Shandon ",
+   "Dragoch ",
+   "Spilett "
+  ],
+  "attendu": "Spilett ",
+  "preuve": {
+   "cle": "Lincoln",
+   "confirmations_train": 59
+  },
+  "id": "dev-025"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le fidèle serviteur noir de l'ingénieur Cyrus Smith s'appelait ",
+  "candidats": [
+   "Fix ",
+   "Joe ",
+   "Hog ",
+   "Nab "
+  ],
+  "attendu": "Nab ",
+  "preuve": {
+   "cle": "Cyrus Smith",
+   "confirmations_train": 212
+  },
+  "id": "dev-026"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le naufragé abandonné seul sur l'île Tabor s'appelait ",
+  "candidats": [
+   "Yacoub ",
+   "Ayrton ",
+   "Garral ",
+   "Benito "
+  ],
+  "attendu": "Ayrton ",
+  "preuve": {
+   "cle": "Tabor",
+   "confirmations_train": 31
+  },
+  "id": "dev-027"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le capitaine anglais obsédé par le pôle Nord s'appelait John ",
+  "candidats": [
+   "Hatteras ",
+   "Olbinett ",
+   "Pencroff ",
+   "Strogoff "
+  ],
+  "attendu": "Hatteras ",
+  "preuve": {
+   "cle": "pôle",
+   "confirmations_train": 95
+  },
+  "id": "dev-028"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le ballon du docteur Fergusson se nommait le ",
+  "candidats": [
+   "Victoria ",
+   "Porpoise ",
+   "Albatros ",
+   "Mongolia "
+  ],
+  "attendu": "Victoria ",
+  "preuve": {
+   "cle": "Fergusson",
+   "confirmations_train": 64
+  },
+  "id": "dev-029"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le négociant turc entêté qui refusait de payer pour traverser le Bosphore s'appelait ",
+  "candidats": [
+   "Kéraban ",
+   "Spilett ",
+   "Kennedy ",
+   "Shandon "
+  ],
+  "attendu": "Kéraban ",
+  "preuve": {
+   "cle": "Bosphore",
+   "confirmations_train": 69
+  },
+  "id": "dev-030"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le riche fazender accusé à tort dans la Jangada s'appelait Joam ",
+  "candidats": [
+   "Ayrton ",
+   "Maston ",
+   "Garral ",
+   "Munbar "
+  ],
+  "attendu": "Garral ",
+  "preuve": {
+   "cle": "fazender",
+   "confirmations_train": 16
+  },
+  "id": "dev-031"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "La voyageuse anglaise qui accompagnait Jasper Hobson s'appelait Paulina ",
+  "candidats": [
+   "Harbert ",
+   "Barnett ",
+   "Ogareff ",
+   "Burbank "
+  ],
+  "attendu": "Barnett ",
+  "preuve": {
+   "cle": "Hobson",
+   "confirmations_train": 393
+  },
+  "id": "dev-032"
+ },
+ {
+  "famille": "non_vus",
+  "prefixe": "Jenny ",
+  "candidats": [
+   "Saratoff ",
+   "Arvidson ",
+   "Hudelson ",
+   "Stanfort "
+  ],
+  "attendu": "Hudelson ",
+  "preuve": {
+   "occurrences_hors_train": 15,
+   "occurrences_train": 0
+  },
+  "id": "dev-033"
+ },
+ {
+  "famille": "non_vus",
+  "prefixe": "Sydney ",
+  "candidats": [
+   "Saratoff ",
+   "Hudelson ",
+   "Stanfort ",
+   "Arvidson "
+  ],
+  "attendu": "Hudelson ",
+  "preuve": {
+   "occurrences_hors_train": 23,
+   "occurrences_train": 0
+  },
+  "id": "dev-034"
+ },
+ {
+  "famille": "non_vus",
+  "prefixe": "Zéphyrin ",
+  "candidats": [
+   "Xirdal ",
+   "Ceroni ",
+   "Blaker ",
+   "Dorick "
+  ],
+  "attendu": "Xirdal ",
+  "preuve": {
+   "occurrences_hors_train": 116,
+   "occurrences_train": 0
+  },
+  "id": "dev-035"
+ }
+]

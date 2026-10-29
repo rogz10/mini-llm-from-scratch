@@ -1,0 +1,90 @@
+{
+ "graine": 0,
+ "nb_questions": {
+  "dev": {
+   "personnages": 19,
+   "faits": 14,
+   "non_vus": 3
+  },
+  "test": {
+   "personnages": 53,
+   "faits": 39,
+   "non_vus": 5
+  }
+ },
+ "reference_hasard": "25 % (4 candidats)",
+ "reference_frequence": {
+  "dev": {
+   "personnages": "5/19",
+   "faits": "7/14",
+   "non_vus": "1/3"
+  },
+  "test": {
+   "personnages": "11/53",
+   "faits": "8/39",
+   "non_vus": "0/5"
+  }
+ },
+ "rejets": [
+  {
+   "famille": "personnages",
+   "quoi": "Arne Saknussemm",
+   "raison": "pas 3 noms de même longueur"
+  },
+  {
+   "famille": "personnages",
+   "quoi": "Michael Michaelovitch",
+   "raison": "pas 3 noms de même longueur"
+  },
+  {
+   "famille": "faits",
+   "quoi": "Le professeur de Hambourg qui voulut atteindre le centre de la Terre s'appelait ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "faits",
+   "quoi": "L'alchimiste islandais dont le message guida Lidenbrock s'appelait Arne ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "faits",
+   "quoi": "Le domestique français de Phileas Fogg s'appelait ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "faits",
+   "quoi": "Le paquebot qui emmena Phileas Fogg jusqu'à Bombay se nommait le ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "faits",
+   "quoi": "Le marin des naufragés de l'île Lincoln s'appelait ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "faits",
+   "quoi": "Le yacht de lord Glenarvan s'appelait le ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "faits",
+   "quoi": "Le brick du capitaine Hatteras s'appelait le ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "faits",
+   "quoi": "Le capitaine américain qui rivalisait avec Hatteras dans les glaces s'appelait ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "faits",
+   "quoi": "Le lieutenant qui commandait le fort du Pays des fourrures s'appelait Jasper ",
+   "raison": "pas 3 distracteurs valables"
+  },
+  {
+   "famille": "non_vus",
+   "quoi": "Biarn Haldorsen",
+   "raison": "pas 3 noms de même longueur"
+  }
+ ]
+}
