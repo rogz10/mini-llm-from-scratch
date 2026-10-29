@@ -16,7 +16,13 @@ Les 120 caractères du vocabulaire, tels que le modèle les a rangés après ent
 
 ![Embeddings des caractères en 3D, fenêtre interactive](exemples/visualisation/embeddings_3d_demo.gif)
 
-![Embeddings des caractères en 3D : clic sur la lettre n](exemples/visualisation/embeddings.png)
+---
+
+## Démo : l'arbre des prédictions
+
+Ce que le modèle écrit après « Phileas » : à chaque étape, les 2 caractères les plus probables, avec leur probabilité sachant le chemin au-dessus. Le chemin « Fogg » l'emporte à chaque étape (99,58 % × 99,94 % × 99,75 % × 99,97 %, soit environ 99,2 % pour le mot entier).
+
+![Arbre des prédictions après « Phileas »](exemples/visualisation/tree.png)
 
 ---
 

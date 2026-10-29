@@ -1,0 +1,1554 @@
+[
+ {
+  "famille": "personnages",
+  "prefixe": "Jasper ",
+  "candidats": [
+   "Valdez ",
+   "Hobson ",
+   "Harvey ",
+   "Hansen "
+  ],
+  "attendu": "Hobson ",
+  "preuve": {
+   "occurrences_train": 509,
+   "dominance": 0.998
+  },
+  "id": "test-000"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Max ",
+  "candidats": [
+   "Singh ",
+   "Fédor ",
+   "Huber ",
+   "Smith "
+  ],
+  "attendu": "Huber ",
+  "preuve": {
+   "occurrences_train": 371,
+   "dominance": 0.997
+  },
+  "id": "test-001"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Ned ",
+  "candidats": [
+   "Rona ",
+   "Hoel ",
+   "Ryan ",
+   "Land "
+  ],
+  "attendu": "Land ",
+  "preuve": {
+   "occurrences_train": 253,
+   "dominance": 1.0
+  },
+  "id": "test-002"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Zach ",
+  "candidats": [
+   "Land ",
+   "Hoel ",
+   "Zorn ",
+   "Fren "
+  ],
+  "attendu": "Fren ",
+  "preuve": {
+   "occurrences_train": 242,
+   "dominance": 1.0
+  },
+  "id": "test-003"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Len ",
+  "candidats": [
+   "Hansen ",
+   "Valdez ",
+   "Burker ",
+   "Halley "
+  ],
+  "attendu": "Burker ",
+  "preuve": {
+   "occurrences_train": 233,
+   "dominance": 1.0
+  },
+  "id": "test-004"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Ivan ",
+  "candidats": [
+   "Machell ",
+   "Misonne ",
+   "Karraje ",
+   "Ogareff "
+  ],
+  "attendu": "Ogareff ",
+  "preuve": {
+   "occurrences_train": 221,
+   "dominance": 0.936
+  },
+  "id": "test-005"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Karl ",
+  "candidats": [
+   "Dorémus ",
+   "Jolivet ",
+   "Dragoch ",
+   "Karraje "
+  ],
+  "attendu": "Dragoch ",
+  "preuve": {
+   "occurrences_train": 188,
+   "dominance": 0.984
+  },
+  "id": "test-006"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Phil ",
+  "candidats": [
+   "Smith ",
+   "Fédor ",
+   "Evans ",
+   "Sahib "
+  ],
+  "attendu": "Evans ",
+  "preuve": {
+   "occurrences_train": 181,
+   "dominance": 1.0
+  },
+  "id": "test-007"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Sylvius ",
+  "candidats": [
+   "Rao ",
+   "Roy ",
+   "Hog ",
+   "Poë "
+  ],
+  "attendu": "Hog ",
+  "preuve": {
+   "occurrences_train": 163,
+   "dominance": 1.0
+  },
+  "id": "test-008"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Nana ",
+  "candidats": [
+   "Sahib ",
+   "Smith ",
+   "Huber ",
+   "Ralph "
+  ],
+  "attendu": "Sahib ",
+  "preuve": {
+   "occurrences_train": 159,
+   "dominance": 1.0
+  },
+  "id": "test-009"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Alcide ",
+  "candidats": [
+   "Shandon ",
+   "Lincoln ",
+   "Burbank ",
+   "Jolivet "
+  ],
+  "attendu": "Jolivet ",
+  "preuve": {
+   "occurrences_train": 150,
+   "dominance": 0.888
+  },
+  "id": "test-010"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "William ",
+  "candidats": [
+   "Hansen ",
+   "Brusch ",
+   "Andrew ",
+   "Waston "
+  ],
+  "attendu": "Andrew ",
+  "preuve": {
+   "occurrences_train": 148,
+   "dominance": 0.804
+  },
+  "id": "test-011"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Sébastien ",
+  "candidats": [
+   "Kamp ",
+   "Fogg ",
+   "Zorn ",
+   "Ryan "
+  ],
+  "attendu": "Zorn ",
+  "preuve": {
+   "occurrences_train": 142,
+   "dominance": 0.986
+  },
+  "id": "test-012"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Jack ",
+  "candidats": [
+   "Fogg ",
+   "Fren ",
+   "Davy ",
+   "Ryan "
+  ],
+  "attendu": "Ryan ",
+  "preuve": {
+   "occurrences_train": 139,
+   "dominance": 1.0
+  },
+  "id": "test-013"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Nic ",
+  "candidats": [
+   "Fogg ",
+   "Ogul ",
+   "Hoel ",
+   "Deck "
+  ],
+  "attendu": "Deck ",
+  "preuve": {
+   "occurrences_train": 126,
+   "dominance": 1.0
+  },
+  "id": "test-014"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Mary ",
+  "candidats": [
+   "Young ",
+   "Smith ",
+   "Grant ",
+   "Davis "
+  ],
+  "attendu": "Grant ",
+  "preuve": {
+   "occurrences_train": 112,
+   "dominance": 0.991
+  },
+  "id": "test-015"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Jean ",
+  "candidats": [
+   "Tankerdon ",
+   "Niklausse ",
+   "Barbicane ",
+   "Cornbutte "
+  ],
+  "attendu": "Cornbutte ",
+  "preuve": {
+   "occurrences_train": 107,
+   "dominance": 0.877
+  },
+  "id": "test-016"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Calistus ",
+  "candidats": [
+   "Simcoë ",
+   "Hansen ",
+   "Munbar ",
+   "Harald "
+  ],
+  "attendu": "Munbar ",
+  "preuve": {
+   "occurrences_train": 107,
+   "dominance": 1.0
+  },
+  "id": "test-017"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "André ",
+  "candidats": [
+   "Barnett ",
+   "Misonne ",
+   "Machell ",
+   "Vasling "
+  ],
+  "attendu": "Vasling ",
+  "preuve": {
+   "occurrences_train": 102,
+   "dominance": 0.962
+  },
+  "id": "test-018"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Hadjine ",
+  "candidats": [
+   "Coverley ",
+   "Baldenak ",
+   "Elizundo ",
+   "Strogoff "
+  ],
+  "attendu": "Elizundo ",
+  "preuve": {
+   "occurrences_train": 65,
+   "dominance": 0.985
+  },
+  "id": "test-019"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Louis ",
+  "candidats": [
+   "Cornbutte ",
+   "Barbicane ",
+   "Tankerdon ",
+   "Niklausse "
+  ],
+  "attendu": "Cornbutte ",
+  "preuve": {
+   "occurrences_train": 63,
+   "dominance": 0.913
+  },
+  "id": "test-020"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Marfa ",
+  "candidats": [
+   "Elizundo ",
+   "Coverley ",
+   "Harcourt ",
+   "Strogoff "
+  ],
+  "attendu": "Strogoff ",
+  "preuve": {
+   "occurrences_train": 48,
+   "dominance": 1.0
+  },
+  "id": "test-021"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Ben ",
+  "candidats": [
+   "Ladko ",
+   "Singh ",
+   "Joyce ",
+   "Davis "
+  ],
+  "attendu": "Joyce ",
+  "preuve": {
+   "occurrences_train": 47,
+   "dominance": 0.855
+  },
+  "id": "test-022"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Balao ",
+  "candidats": [
+   "Roy ",
+   "Rao ",
+   "Poë ",
+   "Hog "
+  ],
+  "attendu": "Rao ",
+  "preuve": {
+   "occurrences_train": 42,
+   "dominance": 1.0
+  },
+  "id": "test-023"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Anna ",
+  "candidats": [
+   "Andrew ",
+   "Halley ",
+   "Waston ",
+   "Meritt "
+  ],
+  "attendu": "Waston ",
+  "preuve": {
+   "occurrences_train": 41,
+   "dominance": 0.837
+  },
+  "id": "test-024"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Gilbert ",
+  "candidats": [
+   "Burbank ",
+   "Jolivet ",
+   "Spilett ",
+   "Misonne "
+  ],
+  "attendu": "Burbank ",
+  "preuve": {
+   "occurrences_train": 39,
+   "dominance": 1.0
+  },
+  "id": "test-025"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Nat ",
+  "candidats": [
+   "Scorbitt ",
+   "Baldenak ",
+   "Stannard ",
+   "Coverley "
+  ],
+  "attendu": "Coverley ",
+  "preuve": {
+   "occurrences_train": 39,
+   "dominance": 1.0
+  },
+  "id": "test-026"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Richard ",
+  "candidats": [
+   "Shandon ",
+   "Jolivet ",
+   "Starkos ",
+   "Burbank "
+  ],
+  "attendu": "Shandon ",
+  "preuve": {
+   "occurrences_train": 32,
+   "dominance": 0.865
+  },
+  "id": "test-027"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Wassili ",
+  "candidats": [
+   "Davis ",
+   "Smith ",
+   "Singh ",
+   "Fédor "
+  ],
+  "attendu": "Fédor ",
+  "preuve": {
+   "occurrences_train": 29,
+   "dominance": 1.0
+  },
+  "id": "test-028"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Athanase ",
+  "candidats": [
+   "Karraje ",
+   "Misonne ",
+   "Dorémus ",
+   "Barnett "
+  ],
+  "attendu": "Dorémus ",
+  "preuve": {
+   "occurrences_train": 25,
+   "dominance": 1.0
+  },
+  "id": "test-029"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Dy ",
+  "candidats": [
+   "Coverley ",
+   "Strogoff ",
+   "Elizundo ",
+   "Baldenak "
+  ],
+  "attendu": "Coverley ",
+  "preuve": {
+   "occurrences_train": 24,
+   "dominance": 0.96
+  },
+  "id": "test-030"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Bob ",
+  "candidats": [
+   "Harald ",
+   "Halley ",
+   "Andrew ",
+   "Harvey "
+  ],
+  "attendu": "Harvey ",
+  "preuve": {
+   "occurrences_train": 23,
+   "dominance": 0.958
+  },
+  "id": "test-031"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Hulda ",
+  "candidats": [
+   "Waston ",
+   "Simcoë ",
+   "Meritt ",
+   "Hansen "
+  ],
+  "attendu": "Hansen ",
+  "preuve": {
+   "occurrences_train": 22,
+   "dominance": 1.0
+  },
+  "id": "test-032"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Will ",
+  "candidats": [
+   "Hansen ",
+   "Halley ",
+   "Munbar ",
+   "Simcoë "
+  ],
+  "attendu": "Halley ",
+  "preuve": {
+   "occurrences_train": 21,
+   "dominance": 0.955
+  },
+  "id": "test-033"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Ethel ",
+  "candidats": [
+   "Hobson ",
+   "Brusch ",
+   "Harvey ",
+   "Simcoë "
+  ],
+  "attendu": "Simcoë ",
+  "preuve": {
+   "occurrences_train": 21,
+   "dominance": 1.0
+  },
+  "id": "test-034"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Jane ",
+  "candidats": [
+   "Brusch ",
+   "Karkof ",
+   "Burker ",
+   "Valdez "
+  ],
+  "attendu": "Burker ",
+  "preuve": {
+   "occurrences_train": 20,
+   "dominance": 0.952
+  },
+  "id": "test-035"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Gourou ",
+  "candidats": [
+   "Sahib ",
+   "Singh ",
+   "Grant ",
+   "Huber "
+  ],
+  "attendu": "Singh ",
+  "preuve": {
+   "occurrences_train": 18,
+   "dominance": 1.0
+  },
+  "id": "test-036"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Impey ",
+  "candidats": [
+   "Niklausse ",
+   "Barbicane ",
+   "Tankerdon ",
+   "Cornbutte "
+  ],
+  "attendu": "Barbicane ",
+  "preuve": {
+   "occurrences_train": 15,
+   "dominance": 1.0
+  },
+  "id": "test-037"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Manoel ",
+  "candidats": [
+   "Halley ",
+   "Meritt ",
+   "Valdez ",
+   "Harvey "
+  ],
+  "attendu": "Valdez ",
+  "preuve": {
+   "occurrences_train": 14,
+   "dominance": 1.0
+  },
+  "id": "test-038"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Gauthier ",
+  "candidats": [
+   "Joyce ",
+   "Ralph ",
+   "Fédor ",
+   "Huber "
+  ],
+  "attendu": "Ralph ",
+  "preuve": {
+   "occurrences_train": 12,
+   "dominance": 1.0
+  },
+  "id": "test-039"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Yacoub ",
+  "candidats": [
+   "Kamp ",
+   "Ryan ",
+   "Ogul ",
+   "Davy "
+  ],
+  "attendu": "Ogul ",
+  "preuve": {
+   "occurrences_train": 12,
+   "dominance": 1.0
+  },
+  "id": "test-040"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Izar ",
+  "candidats": [
+   "Zorn ",
+   "Rona ",
+   "Hoel ",
+   "Kamp "
+  ],
+  "attendu": "Rona ",
+  "preuve": {
+   "occurrences_train": 12,
+   "dominance": 1.0
+  },
+  "id": "test-041"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Éric ",
+  "candidats": [
+   "Strogoff ",
+   "Harcourt ",
+   "Scorbitt ",
+   "Baldenak "
+  ],
+  "attendu": "Baldenak ",
+  "preuve": {
+   "occurrences_train": 11,
+   "dominance": 1.0
+  },
+  "id": "test-042"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Friedrick ",
+  "candidats": [
+   "Lincoln ",
+   "Machell ",
+   "Spilett ",
+   "Ulhmann "
+  ],
+  "attendu": "Ulhmann ",
+  "preuve": {
+   "occurrences_train": 9,
+   "dominance": 1.0
+  },
+  "id": "test-043"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Fidèle ",
+  "candidats": [
+   "Misonne ",
+   "Dorémus ",
+   "Spilett ",
+   "Starkos "
+  ],
+  "attendu": "Misonne ",
+  "preuve": {
+   "occurrences_train": 9,
+   "dominance": 1.0
+  },
+  "id": "test-044"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Humphry ",
+  "candidats": [
+   "Ryan ",
+   "Davy ",
+   "Zorn ",
+   "Fogg "
+  ],
+  "attendu": "Davy ",
+  "preuve": {
+   "occurrences_train": 8,
+   "dominance": 0.889
+  },
+  "id": "test-045"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Hubley ",
+  "candidats": [
+   "Strogoff ",
+   "Scorbitt ",
+   "Baldenak ",
+   "Harcourt "
+  ],
+  "attendu": "Harcourt ",
+  "preuve": {
+   "occurrences_train": 8,
+   "dominance": 1.0
+  },
+  "id": "test-046"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Rob ",
+  "candidats": [
+   "Rao ",
+   "Poë ",
+   "Roy ",
+   "Hog "
+  ],
+  "attendu": "Roy ",
+  "preuve": {
+   "occurrences_train": 6,
+   "dominance": 1.0
+  },
+  "id": "test-047"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Abraham ",
+  "candidats": [
+   "Jolivet ",
+   "Lincoln ",
+   "Shandon ",
+   "Dragoch "
+  ],
+  "attendu": "Lincoln ",
+  "preuve": {
+   "occurrences_train": 6,
+   "dominance": 1.0
+  },
+  "id": "test-048"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Edgard ",
+  "candidats": [
+   "Roy ",
+   "Poë ",
+   "Hog ",
+   "Rao "
+  ],
+  "attendu": "Poë ",
+  "preuve": {
+   "occurrences_train": 5,
+   "dominance": 0.833
+  },
+  "id": "test-049"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Christian ",
+  "candidats": [
+   "Hoel ",
+   "Deck ",
+   "Rona ",
+   "Fogg "
+  ],
+  "attendu": "Hoel ",
+  "preuve": {
+   "occurrences_train": 5,
+   "dominance": 1.0
+  },
+  "id": "test-050"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Frantz ",
+  "candidats": [
+   "Cornbutte ",
+   "Niklausse ",
+   "Tankerdon ",
+   "Barbicane "
+  ],
+  "attendu": "Niklausse ",
+  "preuve": {
+   "occurrences_train": 5,
+   "dominance": 1.0
+  },
+  "id": "test-051"
+ },
+ {
+  "famille": "personnages",
+  "prefixe": "Jefferson ",
+  "candidats": [
+   "Huber ",
+   "Smith ",
+   "Singh ",
+   "Davis "
+  ],
+  "attendu": "Davis ",
+  "preuve": {
+   "occurrences_train": 5,
+   "dominance": 1.0
+  },
+  "id": "test-052"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le capitaine du Nautilus se nommait ",
+  "candidats": [
+   "Nemo ",
+   "Zorn ",
+   "Ilia ",
+   "Hans "
+  ],
+  "attendu": "Nemo ",
+  "preuve": {
+   "cle": "Nautilus",
+   "confirmations_train": 343
+  },
+  "id": "test-053"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le sous-marin du capitaine Nemo s'appelait le ",
+  "candidats": [
+   "Albatros ",
+   "Porpoise ",
+   "Mongolia ",
+   "Nautilus "
+  ],
+  "attendu": "Nautilus ",
+  "preuve": {
+   "cle": "Nemo",
+   "confirmations_train": 302
+  },
+  "id": "test-054"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le harponneur canadien du professeur Aronnax s'appelait Ned ",
+  "candidats": [
+   "Hans ",
+   "Land ",
+   "Axel ",
+   "Zorn "
+  ],
+  "attendu": "Land ",
+  "preuve": {
+   "cle": "harponneur",
+   "confirmations_train": 30
+  },
+  "id": "test-055"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le fidèle serviteur du professeur Aronnax s'appelait ",
+  "candidats": [
+   "Conseil ",
+   "Dragoch ",
+   "Prudent ",
+   "Paganel "
+  ],
+  "attendu": "Conseil ",
+  "preuve": {
+   "cle": "Aronnax",
+   "confirmations_train": 19
+  },
+  "id": "test-056"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le savant prisonnier à bord du Nautilus était le professeur ",
+  "candidats": [
+   "Ogareff ",
+   "Barnett ",
+   "Shandon ",
+   "Aronnax "
+  ],
+  "attendu": "Aronnax ",
+  "preuve": {
+   "cle": "Nautilus",
+   "confirmations_train": 49
+  },
+  "id": "test-057"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Avant d'être le capitaine Nemo, il était le prince ",
+  "candidats": [
+   "Dakkar ",
+   "Zermah ",
+   "Garral ",
+   "Manoel "
+  ],
+  "attendu": "Dakkar ",
+  "preuve": {
+   "cle": "Nemo",
+   "confirmations_train": 6
+  },
+  "id": "test-058"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le neveu du professeur Lidenbrock s'appelait ",
+  "candidats": [
+   "Karl ",
+   "Nemo ",
+   "Axel ",
+   "Roch "
+  ],
+  "attendu": "Axel ",
+  "preuve": {
+   "cle": "Lidenbrock",
+   "confirmations_train": 11
+  },
+  "id": "test-059"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le guide islandais du professeur Lidenbrock s'appelait ",
+  "candidats": [
+   "Roch ",
+   "Hans ",
+   "Ford ",
+   "Karl "
+  ],
+  "attendu": "Hans ",
+  "preuve": {
+   "cle": "Lidenbrock",
+   "confirmations_train": 7
+  },
+  "id": "test-060"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le professeur Lidenbrock habitait la ville de ",
+  "candidats": [
+   "Hambourg ",
+   "Bosphore ",
+   "Lisbonne ",
+   "Belgrade "
+  ],
+  "attendu": "Hambourg ",
+  "preuve": {
+   "cle": "Lidenbrock",
+   "confirmations_train": 9
+  },
+  "id": "test-061"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "La jeune veuve indienne sauvée par Phileas Fogg s'appelait Mrs. ",
+  "candidats": [
+   "Minha ",
+   "Ladko ",
+   "Aouda ",
+   "Hulda "
+  ],
+  "attendu": "Aouda ",
+  "preuve": {
+   "cle": "Fogg",
+   "confirmations_train": 214
+  },
+  "id": "test-062"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Phileas Fogg partit pour son tour du monde depuis la ville de ",
+  "candidats": [
+   "Islande ",
+   "Amazone ",
+   "Floride ",
+   "Londres "
+  ],
+  "attendu": "Londres ",
+  "preuve": {
+   "cle": "Fogg",
+   "confirmations_train": 90
+  },
+  "id": "test-063"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le courrier du tsar envoyé de Moscou à Irkoutsk s'appelait Michel ",
+  "candidats": [
+   "Strogoff ",
+   "Altamont ",
+   "Hatteras ",
+   "Olbinett "
+  ],
+  "attendu": "Strogoff ",
+  "preuve": {
+   "cle": "Irkoutsk",
+   "confirmations_train": 130
+  },
+  "id": "test-064"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le traître qui s'allia aux Tartares contre le tsar s'appelait Ivan ",
+  "candidats": [
+   "Ogareff ",
+   "Barnett ",
+   "Aronnax ",
+   "Nicholl "
+  ],
+  "attendu": "Ogareff ",
+  "preuve": {
+   "cle": "Tartares",
+   "confirmations_train": 37
+  },
+  "id": "test-065"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "La jeune fille qui voyagea avec Michel Strogoff vers Irkoutsk s'appelait ",
+  "candidats": [
+   "Texar ",
+   "Sahib ",
+   "Nadia ",
+   "Aouda "
+  ],
+  "attendu": "Nadia ",
+  "preuve": {
+   "cle": "Strogoff",
+   "confirmations_train": 327
+  },
+  "id": "test-066"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "La vieille mère de Michel Strogoff s'appelait ",
+  "candidats": [
+   "Starr ",
+   "Smith ",
+   "Bruno ",
+   "Marfa "
+  ],
+  "attendu": "Marfa ",
+  "preuve": {
+   "cle": "Strogoff",
+   "confirmations_train": 126
+  },
+  "id": "test-067"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le correspondant français qui suivait la guerre avec Harry Blount s'appelait Alcide ",
+  "candidats": [
+   "Harbert ",
+   "Prudent ",
+   "Paganel ",
+   "Jolivet "
+  ],
+  "attendu": "Jolivet ",
+  "preuve": {
+   "cle": "Blount",
+   "confirmations_train": 121
+  },
+  "id": "test-068"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le président du Gun-Club s'appelait Impey ",
+  "candidats": [
+   "Clawbonny ",
+   "Frycollin ",
+   "Barbicane ",
+   "Glenarvan "
+  ],
+  "attendu": "Barbicane ",
+  "preuve": {
+   "cle": "Gun-Club",
+   "confirmations_train": 100
+  },
+  "id": "test-069"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le capitaine rival de Barbicane, qui fabriquait des plaques de blindage, s'appelait ",
+  "candidats": [
+   "Mangles ",
+   "Prudent ",
+   "Harbert ",
+   "Nicholl "
+  ],
+  "attendu": "Nicholl ",
+  "preuve": {
+   "cle": "Barbicane",
+   "confirmations_train": 366
+  },
+  "id": "test-070"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "L'aventurier français qui voulut partir dans le projectile vers la Lune s'appelait Michel ",
+  "candidats": [
+   "Ladko ",
+   "Aouda ",
+   "Nadia ",
+   "Ardan "
+  ],
+  "attendu": "Ardan ",
+  "preuve": {
+   "cle": "projectile",
+   "confirmations_train": 123
+  },
+  "id": "test-071"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le jeune garçon protégé par le marin Pencroff s'appelait ",
+  "candidats": [
+   "Shandon ",
+   "Jolivet ",
+   "Burbank ",
+   "Harbert "
+  ],
+  "attendu": "Harbert ",
+  "preuve": {
+   "cle": "Pencroff",
+   "confirmations_train": 574
+  },
+  "id": "test-072"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Les naufragés du ballon donnèrent à leur île le nom de ",
+  "candidats": [
+   "Bénarès ",
+   "Lincoln ",
+   "Amazone ",
+   "Scutari "
+  ],
+  "attendu": "Lincoln ",
+  "preuve": {
+   "cle": "naufragés",
+   "confirmations_train": 11
+  },
+  "id": "test-073"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le géographe distrait qui monta par erreur à bord du yacht de lord Glenarvan s'appelait Jacques ",
+  "candidats": [
+   "Jolivet ",
+   "Kennedy ",
+   "Paganel ",
+   "Nicholl "
+  ],
+  "attendu": "Paganel ",
+  "preuve": {
+   "cle": "Glenarvan",
+   "confirmations_train": 557
+  },
+  "id": "test-074"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le capitaine disparu que cherchaient Mary et Robert s'appelait Harry ",
+  "candidats": [
+   "Grant ",
+   "Marfa ",
+   "Hulda ",
+   "Starr "
+  ],
+  "attendu": "Grant ",
+  "preuve": {
+   "cle": "Mary",
+   "confirmations_train": 189
+  },
+  "id": "test-075"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le jeune capitaine du yacht de lord Glenarvan s'appelait John ",
+  "candidats": [
+   "Barnett ",
+   "Burbank ",
+   "Ogareff ",
+   "Mangles "
+  ],
+  "attendu": "Mangles ",
+  "preuve": {
+   "cle": "Glenarvan",
+   "confirmations_train": 339
+  },
+  "id": "test-076"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le trois-mâts du capitaine Grant, perdu en mer, s'appelait le ",
+  "candidats": [
+   "Henrietta ",
+   "Tankadère ",
+   "Britannia ",
+   "Columbiad "
+  ],
+  "attendu": "Britannia ",
+  "preuve": {
+   "cle": "Grant",
+   "confirmations_train": 95
+  },
+  "id": "test-077"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le médecin de l'expédition du capitaine Hatteras était le docteur ",
+  "candidats": [
+   "Fergusson ",
+   "Clawbonny ",
+   "Glenarvan ",
+   "Tankerdon "
+  ],
+  "attendu": "Clawbonny ",
+  "preuve": {
+   "cle": "Hatteras",
+   "confirmations_train": 94
+  },
+  "id": "test-078"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "L'ingénieur qui se faisait appeler le Conquérant s'appelait ",
+  "candidats": [
+   "Aouda ",
+   "Sahib ",
+   "Nadia ",
+   "Robur "
+  ],
+  "attendu": "Robur ",
+  "preuve": {
+   "cle": "Conquérant",
+   "confirmations_train": 15
+  },
+  "id": "test-079"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "L'aéronef plus lourd que l'air de Robur se nommait ",
+  "candidats": [
+   "Albatros ",
+   "Victoria ",
+   "Porpoise ",
+   "Nautilus "
+  ],
+  "attendu": "Albatros ",
+  "preuve": {
+   "cle": "Robur",
+   "confirmations_train": 133
+  },
+  "id": "test-080"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le docteur anglais qui traversa l'Afrique en ballon s'appelait Samuel ",
+  "candidats": [
+   "Clawbonny ",
+   "Tankerdon ",
+   "Fergusson ",
+   "Glenarvan "
+  ],
+  "attendu": "Fergusson ",
+  "preuve": {
+   "cle": "ballon",
+   "confirmations_train": 57
+  },
+  "id": "test-081"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le chasseur écossais ami du docteur Fergusson s'appelait Dick ",
+  "candidats": [
+   "Kennedy ",
+   "Conseil ",
+   "Nicolas ",
+   "Prudent "
+  ],
+  "attendu": "Kennedy ",
+  "preuve": {
+   "cle": "Fergusson",
+   "confirmations_train": 93
+  },
+  "id": "test-082"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le domestique du docteur Fergusson s'appelait ",
+  "candidats": [
+   "Fix ",
+   "Hog ",
+   "Joe ",
+   "Nab "
+  ],
+  "attendu": "Joe ",
+  "preuve": {
+   "cle": "Fergusson",
+   "confirmations_train": 117
+  },
+  "id": "test-083"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le compagnon de voyage hollandais de Kéraban s'appelait Van ",
+  "candidats": [
+   "Blount ",
+   "Mitten ",
+   "Hobson ",
+   "Bunsby "
+  ],
+  "attendu": "Mitten ",
+  "preuve": {
+   "cle": "Kéraban",
+   "confirmations_train": 585
+  },
+  "id": "test-084"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "La jangada descendait le grand fleuve nommé ",
+  "candidats": [
+   "Lincoln ",
+   "Islande ",
+   "Amazone ",
+   "Bénarès "
+  ],
+  "attendu": "Amazone ",
+  "preuve": {
+   "cle": "jangada",
+   "confirmations_train": 76
+  },
+  "id": "test-085"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le planteur nordiste installé en Floride s'appelait James ",
+  "candidats": [
+   "Paulina ",
+   "Kéraban ",
+   "Burbank ",
+   "Prudent "
+  ],
+  "attendu": "Burbank ",
+  "preuve": {
+   "cle": "Floride",
+   "confirmations_train": 80
+  },
+  "id": "test-086"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le violoncelliste du Quatuor Concertant s'appelait Sébastien ",
+  "candidats": [
+   "Ford ",
+   "Zorn ",
+   "Karl ",
+   "Nemo "
+  ],
+  "attendu": "Zorn ",
+  "preuve": {
+   "cle": "Quatuor",
+   "confirmations_train": 8
+  },
+  "id": "test-087"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "L'ingénieur des houillères d'Aberfoyle s'appelait James ",
+  "candidats": [
+   "Bruno ",
+   "Banks ",
+   "Minha ",
+   "Starr "
+  ],
+  "attendu": "Starr ",
+  "preuve": {
+   "cle": "Aberfoyle",
+   "confirmations_train": 63
+  },
+  "id": "test-088"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le vieux contremaître de la mine d'Aberfoyle s'appelait Simon ",
+  "candidats": [
+   "Roch ",
+   "Land ",
+   "Ford ",
+   "Zorn "
+  ],
+  "attendu": "Ford ",
+  "preuve": {
+   "cle": "Aberfoyle",
+   "confirmations_train": 48
+  },
+  "id": "test-089"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "Le chef de la révolte des cipayes, l'ennemi juré du colonel Munro, était Nana ",
+  "candidats": [
+   "Smith ",
+   "Sahib ",
+   "Evans ",
+   "Nadia "
+  ],
+  "attendu": "Sahib ",
+  "preuve": {
+   "cle": "Munro",
+   "confirmations_train": 129
+  },
+  "id": "test-090"
+ },
+ {
+  "famille": "faits",
+  "prefixe": "L'inventeur français du terrible fulgurateur s'appelait Thomas ",
+  "candidats": [
+   "Roch ",
+   "Axel ",
+   "Hans ",
+   "Cort "
+  ],
+  "attendu": "Roch ",
+  "preuve": {
+   "cle": "Fulgurateur",
+   "confirmations_train": 41
+  },
+  "id": "test-091"
+ },
+ {
+  "famille": "non_vus",
+  "prefixe": "Ferdinand ",
+  "candidats": [
+   "Whaston ",
+   "Forsyth ",
+   "Fuentès ",
+   "Beauval "
+  ],
+  "attendu": "Beauval ",
+  "preuve": {
+   "occurrences_hors_train": 26,
+   "occurrences_train": 0
+  },
+  "id": "test-092"
+ },
+ {
+  "famille": "non_vus",
+  "prefixe": "Lewis ",
+  "candidats": [
+   "Xirdal ",
+   "Ceroni ",
+   "Norely ",
+   "Dorick "
+  ],
+  "attendu": "Dorick ",
+  "preuve": {
+   "occurrences_hors_train": 38,
+   "occurrences_train": 0
+  },
+  "id": "test-093"
+ },
+ {
+  "famille": "non_vus",
+  "prefixe": "Lazare ",
+  "candidats": [
+   "Xirdal ",
+   "Ceroni ",
+   "Norely ",
+   "Blaker "
+  ],
+  "attendu": "Ceroni ",
+  "preuve": {
+   "occurrences_hors_train": 18,
+   "occurrences_train": 0
+  },
+  "id": "test-094"
+ },
+ {
+  "famille": "non_vus",
+  "prefixe": "Maurice ",
+  "candidats": [
+   "Clarish ",
+   "Karroly ",
+   "Beauval ",
+   "Reynaud "
+  ],
+  "attendu": "Reynaud ",
+  "preuve": {
+   "occurrences_hors_train": 10,
+   "occurrences_train": 0
+  },
+  "id": "test-095"
+ },
+ {
+  "famille": "non_vus",
+  "prefixe": "Seth ",
+  "candidats": [
+   "Hudelson ",
+   "Saratoff ",
+   "Arvidson ",
+   "Stanfort "
+  ],
+  "attendu": "Stanfort ",
+  "preuve": {
+   "occurrences_hors_train": 25,
+   "occurrences_train": 0
+  },
+  "id": "test-096"
+ }
+]
