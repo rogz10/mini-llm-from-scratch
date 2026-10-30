@@ -88,7 +88,8 @@ def main():
     char_to_id,_,caractere=construire_vocabulaire(texte)
 
     modele=charger_modele(chemin_modele,len(caractere),embd_dim,nb_tetes,nb_blocs,longueur,dropout,device)
-    chemin_json=Path(__file__).parent/"evals"/"questions_dev.json"
+    #chemin_json=Path(__file__).parent/"evals"/"questions_dev.json"
+    chemin_json=Path(__file__).parent/"evals"/"questions_test.json"
     texte_json=chemin_json.read_text(encoding="utf-8")
     questions=json.loads(texte_json)
     #print(questions[:5])

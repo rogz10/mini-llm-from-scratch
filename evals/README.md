@@ -40,3 +40,37 @@ Trois familles de questions :
 - Les questions sont peu nombreuses (133 : 36 en dev, 97 en test). Sur 50 questions, une erreur fait bouger le score de 2 points.
 - Pour la famille `faits`, la vérification confirme que la réponse est proche de l'indice dans le texte, pas que la phrase est parfaite.
 - La famille `non_vus` est petite (8 questions) : elle sert de contrôle, pas de résultat.
+
+## Résultats officiels du test (version 3, 30/10/2026)
+
+Modèle : MiniGPT de la séance 10 (10 831 224 paramètres, 6 blocs × 6 têtes, 384 dimensions, contexte 256), entraîné sur le corpus Verne complet. Le test a été lancé **une seule fois**, après avoir tout mis au point sur le dev.
+
+| famille | dev (v3) | **test** | hasard |
+|---|---|---|---|
+| `personnages` | 13/19 = 68,4 % | **39/53 = 73,6 %** | 25 % |
+| `faits` | 4/14 = 28,6 % | **11/39 = 28,2 %** | 25 % |
+| `non_vus` (contrôle) | 0/3 = 0 % | **1/5 = 20 %** | 25 % |
+| **micro** (personnages + faits) | 51,5 % | **54,4 %** | |
+| **macro** (personnages + faits) | 48,5 % | **50,9 %** | |
+
+Ce que ça montre :
+
+- **Personnages** : le modèle retient l'association « prénom → nom » à partir d'une quinzaine d'occurrences dans le texte d'entraînement. Avec 14 occurrences ou moins : 2/15 (le hasard). Avec 15 ou plus : 37/38.
+- **Faits** : au niveau du hasard. Le modèle ne relie pas une description (« le gentleman du tour du monde ») au nom du personnage. Avec 39 questions, l'écart de 3 points avec le hasard n'est pas significatif.
+- **Contrôle** : proche du hasard sur les noms jamais lus, donc pas de fuite dans cette famille.
+- Les chiffres du dev et du test sont proches : la mise au point sur le dev n'a pas faussé le résultat.
+
+Empreintes SHA-256 des fichiers qui ont produit ces chiffres (le modèle et le corpus ne sont pas dans le dépôt : leur empreinte est la seule trace de la version utilisée) :
+
+```
+197b3c3af325b4f9e208a0f53996069d98f127ae67deb4294c38c960eb0d7dce  evals/questions_test.json
+0f6d6f330b99e4d8f5434a8c6d4e0f8301c25c8dc64d636e7d847f879030ebe5  model/MiniGPT_10M.pt
+fb70d725008e501774a6bb7133aaf049160c96f53aaaa61589ca2d8c4c7676bf  data/verne_complet.txt
+11813c76cb6f2c77b5b2cf31d75483d719e45b8129bdf3db8db3c971e272939c  eval_probing.py
+```
+
+Pour vérifier qu'on a les mêmes fichiers, depuis la racine du projet :
+
+```
+shasum -a 256 evals/questions_test.json model/MiniGPT_10M.pt data/verne_complet.txt eval_probing.py
+```
