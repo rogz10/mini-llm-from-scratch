@@ -19,7 +19,7 @@ Trois familles de questions :
 1. **Extraction** : on cherche dans le texte toutes les paires « Prénom Nom » et on les compte.
 2. **Revue** : on retire ce qui n'est pas un personnage (`Monsieur`, `Mais`, `New York`…) et les prénoms ambigus (si un prénom est suivi de plusieurs noms, comme Michel Ardan et Michel Strogoff, la question n'a pas une seule bonne réponse).
 3. **Rédaction des faits** : des phrases à trous sur les romans (`faits_ecrits.json`).
-4. **Vérification automatique** : une phrase est rejetée si elle recopie le roman, ou si sa réponse n'apparaît pas près de l'indice dans le texte d'entraînement. Les rejets sont listés dans `rapport_construction.json`.
+4. **Vérification automatique** : une phrase est rejetée si le mot juste avant le trou est un prénom ou un titre (une **fuite**, voir version 3), si elle recopie le roman, ou si sa réponse n'apparaît pas près de l'indice dans le texte d'entraînement. Les rejets sont listés dans `rapport_construction.json`.
 5. **Mauvaises réponses** : trois noms du même type et de la même longueur, qui ne vont jamais avec ce prénom ou cet indice dans le corpus.
 6. **Séparation dev / test** : 25 % en dev, 75 % en test, par nom (toutes les questions dont la réponse est « Smith » sont du même côté). Ce découpage est figé dans `decoupage_fige.json` : un nom ne change jamais de côté.
 
@@ -27,6 +27,7 @@ Trois familles de questions :
 
 - **Version 1** (27/10) : premier jeu.
 - **Version 2** (27/10) : dans la famille `non_vus`, les mauvaises réponses sont maintenant aussi des noms jamais lus. En version 1, c'étaient des noms connus du modèle : il évitait le seul nom inconnu et tombait sous le hasard. Les familles `personnages` et `faits` sont inchangées.
+- **Version 3** (30/10) : dans la famille `faits`, plus de prénom ni de titre juste avant le trou. L'analyse d'erreurs sur dev a montré une **fuite** : avec « … s'appelait Phileas » → `Fogg`, le modèle complète le nom par habitude, sans rien savoir du fait (6/6 sur ces questions). 28 phrases réécrites (prénom retiré), et le script rejette désormais ce cas. Seuls les débuts de phrase changent : candidats, réponses et découpage dev / test sont identiques à la version 2. Sur dev, `faits` passe de 10/14 à 4/14 : les 4 réussites restantes sont des phrases qui n'avaient pas de prénom final.
 
 ## Règles d'usage
 

@@ -881,7 +881,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le harponneur canadien du professeur Aronnax s'appelait Ned ",
+  "prefixe": "Le harponneur canadien du professeur Aronnax s'appelait ",
   "candidats": [
    "Hans ",
    "Land ",
@@ -993,7 +993,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "La jeune veuve indienne sauvée par Phileas Fogg s'appelait Mrs. ",
+  "prefixe": "La jeune veuve indienne sauvée par Phileas Fogg s'appelait ",
   "candidats": [
    "Minha ",
    "Ladko ",
@@ -1025,7 +1025,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le courrier du tsar envoyé de Moscou à Irkoutsk s'appelait Michel ",
+  "prefixe": "Le courrier du tsar envoyé de Moscou à Irkoutsk s'appelait ",
   "candidats": [
    "Strogoff ",
    "Altamont ",
@@ -1041,7 +1041,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le traître qui s'allia aux Tartares contre le tsar s'appelait Ivan ",
+  "prefixe": "Le traître qui s'allia aux Tartares contre le tsar s'appelait ",
   "candidats": [
    "Ogareff ",
    "Barnett ",
@@ -1089,7 +1089,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le correspondant français qui suivait la guerre avec Harry Blount s'appelait Alcide ",
+  "prefixe": "Le correspondant français qui suivait la guerre avec Harry Blount s'appelait ",
   "candidats": [
    "Harbert ",
    "Prudent ",
@@ -1105,7 +1105,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le président du Gun-Club s'appelait Impey ",
+  "prefixe": "Le président du Gun-Club s'appelait ",
   "candidats": [
    "Clawbonny ",
    "Frycollin ",
@@ -1137,7 +1137,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "L'aventurier français qui voulut partir dans le projectile vers la Lune s'appelait Michel ",
+  "prefixe": "L'aventurier français qui voulut partir dans le projectile vers la Lune s'appelait ",
   "candidats": [
    "Ladko ",
    "Aouda ",
@@ -1185,7 +1185,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le géographe distrait qui monta par erreur à bord du yacht de lord Glenarvan s'appelait Jacques ",
+  "prefixe": "Le géographe distrait qui monta par erreur à bord du yacht de lord Glenarvan s'appelait ",
   "candidats": [
    "Jolivet ",
    "Kennedy ",
@@ -1201,7 +1201,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le capitaine disparu que cherchaient Mary et Robert s'appelait Harry ",
+  "prefixe": "Le capitaine disparu que cherchaient Mary et Robert s'appelait ",
   "candidats": [
    "Grant ",
    "Marfa ",
@@ -1217,7 +1217,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le jeune capitaine du yacht de lord Glenarvan s'appelait John ",
+  "prefixe": "Le jeune capitaine du yacht de lord Glenarvan s'appelait ",
   "candidats": [
    "Barnett ",
    "Burbank ",
@@ -1297,7 +1297,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le docteur anglais qui traversa l'Afrique en ballon s'appelait Samuel ",
+  "prefixe": "Le docteur anglais qui traversa l'Afrique en ballon s'appelait ",
   "candidats": [
    "Clawbonny ",
    "Tankerdon ",
@@ -1313,7 +1313,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le chasseur écossais ami du docteur Fergusson s'appelait Dick ",
+  "prefixe": "Le chasseur écossais ami du docteur Fergusson s'appelait ",
   "candidats": [
    "Kennedy ",
    "Conseil ",
@@ -1345,7 +1345,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le compagnon de voyage hollandais de Kéraban s'appelait Van ",
+  "prefixe": "Le compagnon de voyage hollandais de Kéraban s'appelait ",
   "candidats": [
    "Blount ",
    "Mitten ",
@@ -1377,7 +1377,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le planteur nordiste installé en Floride s'appelait James ",
+  "prefixe": "Le planteur nordiste installé en Floride s'appelait ",
   "candidats": [
    "Paulina ",
    "Kéraban ",
@@ -1393,7 +1393,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le violoncelliste du Quatuor Concertant s'appelait Sébastien ",
+  "prefixe": "Le violoncelliste du Quatuor Concertant s'appelait ",
   "candidats": [
    "Ford ",
    "Zorn ",
@@ -1409,7 +1409,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "L'ingénieur des houillères d'Aberfoyle s'appelait James ",
+  "prefixe": "L'ingénieur des houillères d'Aberfoyle s'appelait ",
   "candidats": [
    "Bruno ",
    "Banks ",
@@ -1425,7 +1425,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le vieux contremaître de la mine d'Aberfoyle s'appelait Simon ",
+  "prefixe": "Le vieux contremaître de la mine d'Aberfoyle s'appelait ",
   "candidats": [
    "Roch ",
    "Land ",
@@ -1441,7 +1441,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "Le chef de la révolte des cipayes, l'ennemi juré du colonel Munro, était Nana ",
+  "prefixe": "Le chef de la révolte des cipayes, l'ennemi juré du colonel Munro, était ",
   "candidats": [
    "Smith ",
    "Sahib ",
@@ -1457,7 +1457,7 @@
  },
  {
   "famille": "faits",
-  "prefixe": "L'inventeur français du terrible fulgurateur s'appelait Thomas ",
+  "prefixe": "L'inventeur français du terrible fulgurateur s'appelait ",
   "candidats": [
    "Roch ",
    "Axel ",
