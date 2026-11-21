@@ -61,6 +61,13 @@ class Tete(nn.Module):
         Q=self.Q(x)
         K=self.K(x)
         V=self.V(x)
+        if self.training:
+            taux=self.dropout.p
+            sortie=F.scaled_dot_product_attention(Q,K,V,is_causal=True,dropout_p=taux)
+        else:
+            sortie=F.scaled_dot_product_attention(Q,K,V,is_causal=True)
+
+        """
         taille_tete=self.taille_tete
 
        # notes pour chaque paire
@@ -81,6 +88,9 @@ class Tete(nn.Module):
 
         # chaque lettre récupère les valeurs de son passé, selon ses parts;(b,t,taille_tete)
         sortie= poids @ V
+        """
+        #sortie=F.scaled_dot_product_attention(Q,K,V,is_causal=True)
+
         return sortie
 
 
@@ -170,10 +180,29 @@ MultiTetes(32, 4, 8) - 4 têtes de 8 - 32 nombres par lettre
         super().__init__()
         self.projection=nn.Linear(nb_tete*taille_tete,embd_dim) # 4 têtes de 8 nombres = 32 nombres par lettre
         self.dropout=nn.Dropout(dropout)
-        self.tetes=nn.ModuleList([Tete(embd_dim,taille_tete,dropout) for _ in range(nb_tete)])
+        #self.tetes=nn.ModuleList([Tete(embd_dim,taille_tete,dropout) for _ in range(nb_tete)])
+        self.Q=nn.Linear(embd_dim,nb_tete*taille_tete,bias=False)
+        self.K=nn.Linear(embd_dim,nb_tete*taille_tete,bias=False)
+        self.V=nn.Linear(embd_dim,nb_tete*taille_tete,bias=False)
+        self.nb_tete=nb_tete
+        self.taille_tete=taille_tete
     def forward(self,x):
-        sorties_tetes=[tete(x) for tete in self.tetes]
-        sorties_tetes=torch.cat(sorties_tetes,dim=-1)
+        nb_extrait,nb_token,_=x.shape
+        q=self.Q(x)
+        k=self.K(x)
+        v=self.V(x)
+
+        q=q.reshape(nb_extrait,nb_token,self.nb_tete,self.taille_tete).transpose(1,2)
+        k=k.reshape(nb_extrait,nb_token,self.nb_tete,self.taille_tete).transpose(1,2)
+        v=v.reshape(nb_extrait,nb_token,self.nb_tete,self.taille_tete).transpose(1,2)
+        if self.training:
+            taux=self.dropout.p
+            sortie=F.scaled_dot_product_attention(q,k,v,is_causal=True,dropout_p=taux)
+        else:
+            sortie=F.scaled_dot_product_attention(q,k,v,is_causal=True)
+
+
+        sorties_tetes=sortie.transpose(1,2).reshape(nb_extrait,nb_token,self.nb_tete*self.taille_tete)
         sorties_tetes=self.projection(sorties_tetes)
         sorties_tetes=self.dropout(sorties_tetes)
         return sorties_tetes
